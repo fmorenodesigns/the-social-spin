@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+@import "./triangle.css";
 
 body {
   font-family: "Inter", sans-serif;
@@ -16,17 +17,7 @@ body {
   align-items: center;
   flex-direction: column;
   position: relative;
-}
-
-#pointer {
-  width: 0;
-  height: 0;
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-
-  border-top: 50px solid #eb554b;
-  margin-bottom: -40px;
-  z-index: 2;
+  margin-top: 30px;
 }
 
 #roulette-wrapper {
@@ -39,7 +30,50 @@ body {
   justify-content: center;
   border-radius: 50%;
   background-color: var(--yellow);
-  border: 20px solid var(--yellow);
+  border: 15px solid var(--yellow);
+}
+
+#pointer {
+  margin-bottom: -73px;
+  z-index: 2;
+}
+
+#pointer polygon {
+  stroke-width: 1;
+  fill: #ea613d;
+  stroke: #864e3e;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+#roulette-wrapper-line-1 {
+  border: 1px solid #9c831d;
+  border-radius: 50%;
+}
+
+#roulette-wrapper-line-2 {
+  border: 3px solid var(--yellow);
+  border-radius: 50%;
+}
+
+#roulette-wrapper-line-3,
+#roulette-wrapper-line-0 {
+  border: 1px solid #666254;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 20px 0px rgb(41 40 37 / 57%);
+}
+
+#roulette-wrapper-line-0 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+#roulette {
+  width: 100%;
+  height: 100%;
 }
 
 #roulette-names {
@@ -49,17 +83,26 @@ body {
   z-index: 1;
 }
 
-#roulette,
+#roulette-slices,
 #roulette-names {
   width: var(--roulette-diameter);
   height: var(--roulette-diameter);
 }
 
 .slice {
-  fill: url("#slice-gradient");
   transform-origin: 50% 50%;
   stroke: var(--yellow);
   stroke-width: 2;
+}
+
+.slice-color-1 {
+  fill: #418b82;
+}
+.slice-color-2 {
+  fill: #40838c;
+}
+.slice-color-3 {
+  fill: #4ea99e;
 }
 
 .slice-name {
@@ -95,8 +138,8 @@ body {
   cursor: pointer;
   letter-spacing: 1px;
   z-index: 2;
-  color: #7c56b1;
-  border: 4px solid;
+  color: #675c2f;
+  border: 1px solid;
 }
 
 #spin:hover {

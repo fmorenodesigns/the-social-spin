@@ -24,29 +24,22 @@
       </textarea>
 
       <button id="generate-roulette">GENERATE</button>
-      <div id="roulette-container" class="hidden">
-        <svg id="definitions" width="0" height="0">
-          <defs>
-            <linearGradient
-              id="slice-gradient"
-              x1="0%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <stop offset="0%" style="stop-color: #6e48a3; stop-opacity: 1" />
-              <stop
-                offset="100%"
-                style="stop-color: #9a6cd9; stop-opacity: 1"
-              />
-            </linearGradient>
-          </defs>
+      <div id="roulette-container" class="">
+        <svg id="pointer" width="25" height="75">
+          <polygon points="0,0 25,0 12.5,75"></polygon>
         </svg>
-
-        <div id="pointer"></div>
-        <div id="roulette-wrapper">
-          <svg id="roulette"></svg>
-          <svg id="roulette-names"></svg>
+        <div id="roulette-wrapper-line-3">
+          <div id="roulette-wrapper-line-2">
+            <div id="roulette-wrapper-line-1">
+              <div id="roulette-wrapper">
+                <div id="roulette-wrapper-line-0"></div>
+                <div id="roulette">
+                  <svg id="roulette-slices"></svg>
+                  <svg id="roulette-names"></svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <button id="spin">SPIN</button>
