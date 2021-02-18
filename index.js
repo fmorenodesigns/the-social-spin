@@ -108,22 +108,20 @@ $getEle("#generate-roulette").addEventListener("click", () => {
 
 $getEle("#spin").addEventListener("click", () => {
   const $roulette = $getEle("#roulette");
+  const participantsCount = participants.length;
 
   $roulette.style.transition = "none";
   $roulette.style.transform = `rotate(0deg)`;
 
   setTimeout(() => {
-    const completeRounds = randomNumber(6, 12);
+    const completeRounds = Math.round(randomNumber(6, 12));
+    const participantChosen = randomNumber(0, participantsCount);
     const animationDuration = randomNumber(3.8, 6);
     const finalCoil =
       Math.random() <= 0.7 ? randomNumber(0.95, 1) : randomNumber(1, 1.3);
     $roulette.style.transition = `transform ${animationDuration}s cubic-bezier(0.35,-0.15, 0, ${finalCoil})`;
-    $roulette.style.transform = `rotate(${completeRounds * 360}deg)`;
+    $roulette.style.transform = `rotate(${
+      completeRounds * 360 + participantChosen * 360
+    }deg)`;
   }, 40);
 });
-
-participants = $getEle("#participants")
-  .value.split("\n")
-  .filter((participant) => participant.trim().length);
-
-const created = createRoulette(participants);
