@@ -52,7 +52,7 @@ function createRouletteSlice(sliceName, position, sliceCount) {
 
   $sliceNamePath.setAttribute("d", $slice.getAttribute("d"));
   $sliceNamePath.style.transform = `rotate(${
-    position * sliceDegrees + sliceDegrees / 2 + 2
+    position * sliceDegrees + sliceDegrees / 2 + 2.5
   }deg)`;
   $sliceNamePath.id = position;
 
@@ -63,8 +63,8 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   );
 
   $textPath.setAttribute("href", "#" + position);
-  $textPath.setAttribute("text-anchor", "middle");
-  $textPath.setAttribute("startOffset", "170px");
+  $textPath.setAttribute("text-anchor", "start");
+  $textPath.setAttribute("startOffset", "110px");
   $textPath.innerHTML = sliceName;
   $textPath.classList.add("slice-name-text");
   $text.appendChild($textPath);
