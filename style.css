@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  --roulette-diameter: 600px;
+  --yellow: #f0c52b;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#roulette-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+#pointer {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+
+  border-top: 50px solid #eb554b;
+  margin-bottom: -40px;
+  z-index: 2;
+}
+
+#roulette-wrapper {
+  position: relative;
+  transform-origin: 50% 50%;
+  width: var(--roulette-diameter);
+  height: var(--roulette-diameter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--yellow);
+  border: 20px solid var(--yellow);
+}
+
+#roulette-names {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#roulette,
+#roulette-names {
+  width: var(--roulette-diameter);
+  height: var(--roulette-diameter);
+}
+
+.slice {
+  fill: url("#slice-gradient");
+  transform-origin: 50% 50%;
+  stroke: var(--yellow);
+  stroke-width: 2;
+}
+
+.slice-name {
+  fill: transparent;
+  transform-origin: 50% 50%;
+  text-align: center;
+}
+
+.slice-name-text {
+  font-weight: 600;
+  fill: white;
+  font-size: 20px;
+}
+
+#spin {
+  --diameter: 95px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-progress-appearance: none;
+  outline: none;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: var(--yellow);
+  border-radius: 50%;
+  height: var(--diameter);
+  width: var(--diameter);
+  top: calc(50% - var(--diameter) / 2 + 1px);
+  left: calc(50% - var(--diameter) / 2 + 1px);
+  text-align: center;
+  position: absolute;
+  cursor: pointer;
+  letter-spacing: 1px;
+  z-index: 2;
+  color: #7c56b1;
+  border: 4px solid;
+}
+
+#spin:hover {
+  --diameter: 98px;
+}
+
+#spin:active {
+  --diameter: 87px;
+}

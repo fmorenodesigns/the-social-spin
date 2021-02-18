@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Roulette</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>Social Roulette</h1>
+
+      <textarea name="participants" id="participants" cols="30" rows="10">
+      Stein Magnus
+      Helen
+      Andreas
+      Aksel
+      Francisco
+      Helen
+      Seamus
+      Ole Magnus
+      Pål
+      </textarea>
+
+      <button id="generate-roulette">GENERATE</button>
+      <div id="roulette-container" class="hidden">
+        <svg id="definitions" width="0" height="0">
+          <defs>
+            <linearGradient
+              id="slice-gradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" style="stop-color: #6e48a3; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #9a6cd9; stop-opacity: 1"
+              />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div id="pointer"></div>
+        <div id="roulette-wrapper">
+          <svg id="roulette"></svg>
+          <svg id="roulette-names"></svg>
+        </div>
+
+        <button id="spin">SPIN</button>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
