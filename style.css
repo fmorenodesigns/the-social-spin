@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 * {
   font-family: "Inter", sans-serif;
@@ -16,11 +17,17 @@ body {
   text-align: center;
   --roulette-diameter: 620px;
   --yellow: #f0c52b;
+  --primary: #3e6bea;
+  background-color: #f5f7f9;
 }
 
 h1 {
   margin: 0;
   padding: 20px 0;
+  font-family: "Bebas Neue", cursive;
+  color: var(--primary);
+  font-size: 3em;
+  letter-spacing: 1px;
 }
 
 button {
@@ -66,6 +73,11 @@ button:active::after {
 #container {
   box-sizing: content-box;
   padding: 20px 20px 60px;
+}
+
+#instructions {
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 #roulette-container {
@@ -175,13 +187,13 @@ button:active::after {
 }
 
 .slice-color-1 {
-  fill: #418b82;
+  fill: #324577;
 }
 .slice-color-2 {
-  fill: #40838c;
+  fill: #3457b3;
 }
 .slice-color-3 {
-  fill: #4ea99e;
+  fill: #5081f1;
 }
 
 .slice-name {
@@ -255,14 +267,14 @@ button:active::after {
 }
 
 .primary-button {
-  background-color: #6e48a3;
+  background-color: var(--primary);
   color: #fff;
-  border: 1px solid #6e48a3;
+  border: 1px solid var(--primary);
 }
 
 .secondary-button {
   background-color: transparent;
-  color: #6e48a3;
+  color: var(--primary);
   border: 1px solid;
 }
 
