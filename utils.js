@@ -11,9 +11,7 @@ Array.prototype.shuffle = function () {
 };
 
 function degreesToRad(degrees) {
-  const normalizedDegrees = Math.round(
-    (degrees / 360 - Math.floor(degrees / 360)) * 360
-  );
+  const normalizedDegrees = (degrees / 360 - Math.floor(degrees / 360)) * 360;
   const PI = Math.PI;
 
   return (normalizedDegrees * PI) / 180;
