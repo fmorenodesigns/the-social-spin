@@ -1,7 +1,3 @@
-const STROKE = 2;
-const CIRCLE_RADIUS = 300;
-const CIRCLE_RADIUS_PLUS_STROKE = CIRCLE_RADIUS + STROKE;
-const CIRCLE_RADIUS_MINUS_STROKE = CIRCLE_RADIUS - STROKE;
 let participants = [];
 
 window.addEventListener("load", () => {
@@ -118,8 +114,15 @@ $getEle("#spin").addEventListener("click", () => {
 
   setTimeout(() => {
     const rand = Math.random();
-    const completeRounds = Math.round(randomNumber(6, 12)) + rand;
-    const animationDuration = randomNumber(3.8, 6);
+    const completeRounds =
+      Math.round(randomNumber(MIN_SPIN_ROUNDS, MAX_SPIN_ROUNDS)) + rand;
+    const animationDuration = randomNumber(
+      MIN_SPIN_ROUNDS / 3,
+      MAX_SPIN_ROUNDS / 3
+    );
+
+    // finalCoil > 1 makes the animation spin past the chosen entry, and then spin
+    // back to it, for extra funky effect
     const finalCoil =
       Math.random() <= 0.7 ? randomNumber(0.95, 1) : randomNumber(1, 1.3);
     $roulette.style.transition = `transform ${animationDuration}s cubic-bezier(0.35,-0.15, 0, ${finalCoil})`;
