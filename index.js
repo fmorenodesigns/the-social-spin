@@ -140,4 +140,6 @@ $getEle("#store-entries").addEventListener("click", () => {
   );
 
   setUrlParam("participants", newParticipantsList.join(","));
+
+  copyToClipboard(window.location.href);
 });

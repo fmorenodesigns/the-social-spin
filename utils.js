@@ -46,3 +46,19 @@ function cleanParticipantsList(participantsList) {
     .map((participant) => participant.trim())
     .filter((participant) => participant.length);
 }
+
+function copyToClipboard(text) {
+  const $fakeInput = document.createElement("input");
+  $fakeInput.classList.add("fake-input");
+
+  document.getElementsByTagName("body")[0].appendChild($fakeInput);
+
+  $fakeInput.value = text;
+  $fakeInput.select();
+  $fakeInput.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+
+  $fakeInput.remove();
+
+  alert("Link copied!");
+}
