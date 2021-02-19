@@ -11,7 +11,13 @@ window.addEventListener("load", () => {
 });
 
 function createRouletteSlice(sliceName, position, sliceCount) {
-  const colorNumber = position + 1 - 3 * Math.floor(position / 3);
+  const colorNumber =
+    // If it's the last slice and the rest of the division of the amount of slices per
+    // 3 (the amount of different colors) is 1, then pick the second color. This is to
+    // avoid the first and the last slices having the same color.
+    position === sliceCount - 1 && sliceCount % 3 === 1
+      ? 2
+      : position + 1 - 3 * Math.floor(position / 3);
   const sliceDegrees = 360 / sliceCount;
   const arcRads = degreesToRad(90 - sliceDegrees);
   const arcEndX =
