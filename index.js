@@ -108,12 +108,15 @@ $getEle("#spin").addEventListener("click", () => {
   $roulette.style.transform = `rotate(0deg)`;
 
   setTimeout(() => {
-    const completeRounds = Math.round(randomNumber(6, 12)) + Math.random();
+    const rand = Math.random();
+    const completeRounds = Math.round(randomNumber(6, 12)) + rand;
     const animationDuration = randomNumber(3.8, 6);
     const finalCoil =
       Math.random() <= 0.7 ? randomNumber(0.95, 1) : randomNumber(1, 1.3);
     $roulette.style.transition = `transform ${animationDuration}s cubic-bezier(0.35,-0.15, 0, ${finalCoil})`;
     $roulette.style.transform = `rotate(${completeRounds * 360}deg)`;
+
+    console.log(participants[Math.floor(participants.length * (1 - rand))]);
   }, 40);
 });
 
