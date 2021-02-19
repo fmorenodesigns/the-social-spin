@@ -130,7 +130,7 @@ button:active::after {
   width: 100%;
   height: 100%;
   /* animation only used when generating the first time*/
-  animation: one_round_spin 4s ease;
+  animation: one_round_spin 2s ease;
 }
 
 @keyframes one_round_spin {
