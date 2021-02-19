@@ -1,5 +1,5 @@
 const STROKE = 2;
-const CIRCLE_RADIUS = 300;
+const CIRCLE_RADIUS = 300; // Equal to --roulette-diameter css var
 const CIRCLE_RADIUS_PLUS_STROKE = CIRCLE_RADIUS + STROKE;
 const CIRCLE_RADIUS_MINUS_STROKE = CIRCLE_RADIUS - STROKE;
 

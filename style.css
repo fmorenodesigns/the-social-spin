@@ -131,7 +131,7 @@ button:active::after {
 #roulette-wrapper-line-0 {
   border: 1px solid #666254;
   border-radius: 50%;
-  box-shadow: inset 0px 0px 20px 0px rgb(41 40 37 / 57%);
+  box-shadow: inset 0px 0px 20px 0px rgb(41 40 37 / 70%);
 }
 
 #roulette-wrapper-size-delimiter {
@@ -182,12 +182,10 @@ button:active::after {
 
 .slice {
   transform-origin: 50% 50%;
-  stroke: var(--yellow);
-  stroke-width: 2;
 }
 
 .slice-color-1 {
-  fill: #324577;
+  fill: #324d96;
 }
 .slice-color-2 {
   fill: #3457b3;
