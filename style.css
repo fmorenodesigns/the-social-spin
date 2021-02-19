@@ -1,7 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 
-body {
+* {
   font-family: "Inter", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
   text-align: center;
   --roulette-diameter: 600px;
   --yellow: #f0c52b;
@@ -9,6 +20,10 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+#container {
+  height: 100%;
 }
 
 #roulette-container {
@@ -73,6 +88,17 @@ body {
 #roulette {
   width: 100%;
   height: 100%;
+  /* animation only used when generating the first time*/
+  animation: one_round_spin 4s ease;
+}
+
+@keyframes one_round_spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #roulette-names {
@@ -141,7 +167,6 @@ body {
   left: calc(50% - var(--diameter) / 2 + 1px);
   text-align: center;
   position: absolute;
-  cursor: pointer;
   letter-spacing: 1px;
   z-index: 2;
   color: #675c2f;
@@ -154,4 +179,78 @@ body {
 
 #spin:active {
   --diameter: 87px;
+}
+
+#generate-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  align-items: flex-end;
+}
+
+#generate-form p {
+  align-self: stretch;
+  text-align: left;
+  font-size: 11pt;
+}
+
+#generate-form textarea {
+  font-size: 11pt;
+  line-height: 18pt;
+  margin-bottom: 20px;
+  align-self: stretch;
+  padding: 7px 10px;
+  border: 1px solid #d4d2d5;
+  box-shadow: inset 0px 0px 4px 3px rgba(212, 210, 213, 0.1);
+  border-radius: 0.25rem;
+}
+
+#generate-form button {
+  padding: 15px 30px;
+  border-radius: 0.25rem;
+  background-color: #6e48a3;
+  color: #fff;
+  letter-spacing: 2px;
+  outline: none;
+  border: none;
+  position: relative;
+  box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease;
+}
+
+#generate-form button:active {
+  top: 5px;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease;
+}
+
+button {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+button:hover::after {
+  content: "";
+  background-color: #fff;
+  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+button:active::after {
+  content: "";
+  background-color: #000;
+  opacity: 0.05;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }

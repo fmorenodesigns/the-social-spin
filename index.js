@@ -85,20 +85,21 @@ function createRoulette(slices) {
 
 function loadRoullette() {
   participants = $getEle("#participants")
-    .value.split("\n")
+    .value.replace(/\n/g, ",")
+    .split(",")
     .filter((participant) => participant.trim().length);
 
   participants.shuffle();
 
   const created = createRoulette(participants);
-  const $roulette = $getEle("#roulette-container");
+  const $rouletteContainer = $getEle("#roulette-container");
 
-  $roulette.classList.toggle("hidden", !created);
+  $rouletteContainer.classList.toggle("hidden", !created);
+
+  const $roulette = $getEle("#roulette");
+  $roulette.style.transition = "none";
+  $roulette.style.transform = "rotate(0deg)";
 }
-
-$getEle("#generate-roulette").addEventListener("click", () => {
-  loadRoullette();
-});
 
 $getEle("#spin").addEventListener("click", () => {
   const $roulette = $getEle("#roulette");
@@ -116,4 +117,9 @@ $getEle("#spin").addEventListener("click", () => {
   }, 40);
 });
 
-loadRoullette();
+$getEle("#generate-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  loadRoullette();
+});
+// loadRoullette();
