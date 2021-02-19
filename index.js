@@ -4,6 +4,16 @@ const CIRCLE_RADIUS_PLUS_STROKE = CIRCLE_RADIUS + STROKE;
 const CIRCLE_RADIUS_MINUS_STROKE = CIRCLE_RADIUS - STROKE;
 let participants = [];
 
+window.addEventListener("load", () => {
+  const urlParticipants = cleanParticipantsList(
+    getUrlParam("participants").split(",")
+  );
+
+  if (urlParticipants.length) {
+    $getEle("#participants").value = urlParticipants.join(",");
+  }
+});
+
 function createRouletteSlice(sliceName, position, sliceCount) {
   const colorNumber = position + 1 - 3 * Math.floor(position / 3);
   const sliceDegrees = 360 / sliceCount;
@@ -84,11 +94,9 @@ function createRoulette(slices) {
 }
 
 function loadRoullette() {
-  participants = $getEle("#participants")
-    .value.replace(/\n/g, ",")
-    .split(",")
-    .map((participant) => participant.trim())
-    .filter((participant) => participant.length);
+  participants = cleanParticipantsList(
+    $getEle("#participants").value.replace(/\n/g, ",").split(",")
+  );
 
   participants.shuffle();
 
@@ -123,7 +131,13 @@ $getEle("#spin").addEventListener("click", () => {
 
 $getEle("#generate-form").addEventListener("submit", (e) => {
   e.preventDefault();
-
   loadRoullette();
 });
-// loadRoullette();
+
+$getEle("#store-entries").addEventListener("click", () => {
+  const newParticipantsList = cleanParticipantsList(
+    $getEle("#participants").value.replace(/\n/g, ",").split(",")
+  );
+
+  setUrlParam("participants", newParticipantsList.join(","));
+});

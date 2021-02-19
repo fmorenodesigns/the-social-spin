@@ -22,3 +22,27 @@ function degreesToRad(degrees) {
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
+
+function getUrlParam(paramName) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  return urlParams.get(paramName);
+}
+
+function setUrlParam(paramName, value) {
+  const href = window.location.href;
+  const url = new URL(href);
+
+  url.searchParams.set(paramName, value);
+
+  const decodedURL = decodeURIComponent(url);
+
+  window.history.pushState({ path: decodedURL }, "", decodedURL);
+}
+
+function cleanParticipantsList(participantsList) {
+  return participantsList
+    .map((participant) => participant.trim())
+    .filter((participant) => participant.length);
+}
