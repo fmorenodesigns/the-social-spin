@@ -87,7 +87,8 @@ function loadRoullette() {
   participants = $getEle("#participants")
     .value.replace(/\n/g, ",")
     .split(",")
-    .filter((participant) => participant.trim().length);
+    .map((participant) => participant.trim())
+    .filter((participant) => participant.length);
 
   participants.shuffle();
 
