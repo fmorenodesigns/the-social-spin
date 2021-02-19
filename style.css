@@ -205,6 +205,7 @@ body {
   border: 1px solid #d4d2d5;
   box-shadow: inset 0px 0px 4px 3px rgba(212, 210, 213, 0.1);
   border-radius: 0.25rem;
+  resize: vertical;
 }
 
 #generate-form button {
