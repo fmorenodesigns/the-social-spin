@@ -129,6 +129,11 @@ body {
   font-size: 20px;
   font-weight: 600;
   background-color: var(--yellow);
+  background: linear-gradient(
+    0deg,
+    rgb(214, 177, 10) 0%,
+    rgba(255, 218, 0, 1) 100%
+  );
   border-radius: 50%;
   height: var(--diameter);
   width: var(--diameter);
