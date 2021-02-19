@@ -1,24 +1,8 @@
-const $getEle = document.querySelector.bind(document);
-const $getAllEle = document.querySelectorAll.bind(document);
-
 const STROKE = 2;
 const CIRCLE_RADIUS = 300;
 const CIRCLE_RADIUS_PLUS_STROKE = CIRCLE_RADIUS + STROKE;
 const CIRCLE_RADIUS_MINUS_STROKE = CIRCLE_RADIUS - STROKE;
 let participants = [];
-
-function degreesToRad(degrees) {
-  const normalizedDegrees = Math.round(
-    (degrees / 360 - Math.floor(degrees / 360)) * 360
-  );
-  const PI = Math.PI;
-
-  return (normalizedDegrees * PI) / 180;
-}
-
-function randomNumber(min, max) {
-  return Math.random() * (max - min) + min;
-}
 
 function createRouletteSlice(sliceName, position, sliceCount) {
   const colorNumber = position + 1 - 3 * Math.floor(position / 3);
@@ -50,9 +34,12 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   );
   $sliceNamePath.classList.add("slice-name");
 
-  $sliceNamePath.setAttribute("d", $slice.getAttribute("d"));
+  $sliceNamePath.setAttribute(
+    "d",
+    `M ${CIRCLE_RADIUS} ${CIRCLE_RADIUS} L ${arcEndX} ${arcEndY} Z`
+  );
   $sliceNamePath.style.transform = `rotate(${
-    position * sliceDegrees + sliceDegrees / 2 + 2.5
+    position * sliceDegrees - sliceDegrees / 2 + 2.5
   }deg)`;
   $sliceNamePath.id = position;
 
@@ -63,11 +50,12 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   );
 
   $textPath.setAttribute("href", "#" + position);
-  $textPath.setAttribute("text-anchor", "start");
-  $textPath.setAttribute("startOffset", "110px");
+  $textPath.setAttribute("text-anchor", "end");
+  $textPath.setAttribute("startOffset", "44%");
   $textPath.innerHTML = sliceName;
   $textPath.classList.add("slice-name-text");
   $text.appendChild($textPath);
+  // end of slice name insertion
 
   return [$slice, $sliceNamePath, $text];
 }
@@ -95,33 +83,37 @@ function createRoulette(slices) {
   return true;
 }
 
-$getEle("#generate-roulette").addEventListener("click", () => {
+function loadRoullette() {
   participants = $getEle("#participants")
     .value.split("\n")
     .filter((participant) => participant.trim().length);
+
+  participants.shuffle();
 
   const created = createRoulette(participants);
   const $roulette = $getEle("#roulette-container");
 
   $roulette.classList.toggle("hidden", !created);
+}
+
+$getEle("#generate-roulette").addEventListener("click", () => {
+  loadRoullette();
 });
 
 $getEle("#spin").addEventListener("click", () => {
   const $roulette = $getEle("#roulette");
-  const participantsCount = participants.length;
 
   $roulette.style.transition = "none";
   $roulette.style.transform = `rotate(0deg)`;
 
   setTimeout(() => {
-    const completeRounds = Math.round(randomNumber(6, 12));
-    const participantChosen = randomNumber(0, participantsCount);
+    const completeRounds = Math.round(randomNumber(6, 12)) + Math.random();
     const animationDuration = randomNumber(3.8, 6);
     const finalCoil =
       Math.random() <= 0.7 ? randomNumber(0.95, 1) : randomNumber(1, 1.3);
     $roulette.style.transition = `transform ${animationDuration}s cubic-bezier(0.35,-0.15, 0, ${finalCoil})`;
-    $roulette.style.transform = `rotate(${
-      completeRounds * 360 + participantChosen * 360
-    }deg)`;
+    $roulette.style.transform = `rotate(${completeRounds * 360}deg)`;
   }, 40);
 });
+
+loadRoullette();
