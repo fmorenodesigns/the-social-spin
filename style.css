@@ -18,6 +18,11 @@ body {
   --yellow: #f0c52b;
 }
 
+h1 {
+  margin: 0;
+  padding: 20px 0;
+}
+
 .hidden {
   display: none !important;
 }
