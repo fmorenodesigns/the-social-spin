@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import "./tooltip.css";
+@import "./animation.css";
 
 * {
   font-family: "Inter", sans-serif;
@@ -156,15 +157,6 @@ button:active::after {
   animation: one_round_spin 2s ease;
 }
 
-@keyframes one_round_spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 #roulette-names {
   position: absolute;
   top: 0;
@@ -237,27 +229,6 @@ button:active::after {
 
 #spin:active {
   --diameter: 15.5%;
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(0.8);
-  }
-  20% {
-    transform: scale(1.2);
-  }
-  40% {
-    transform: scale(0.8);
-  }
-  60% {
-    transform: scale(1.1);
-  }
-  80% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: none;
-  }
 }
 
 #generate-form {
