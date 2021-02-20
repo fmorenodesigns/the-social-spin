@@ -2,28 +2,28 @@
   overflow: visible;
   display: inline-flex;
   justify-content: center;
+  align-items: center;
   position: relative;
 }
 
 [tooltip]::before {
   position: absolute;
-  width: 100%;
+  width: max-content;
   min-width: 80px;
-  max-width: 180px;
+  max-width: 280px;
   word-break: break-word;
-  font-size: 0.95em;
-  line-height: 1.2em;
+  font-size: 0.9em;
+  line-height: 1.4em;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 0.25rem;
   padding: 7px 10px;
-  bottom: -10px;
-  transform: translateY(100%);
   letter-spacing: 0 !important;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
-  animation: slide_down 0.4s ease;
+  animation: tooltip_appearing 0.4s ease-in;
   box-sizing: border-box;
   pointer-events: none;
+  z-index: 4;
 }
 
 [tooltip]:hover::before {
@@ -34,7 +34,27 @@
   content: attr(tooltip);
 }
 
-@keyframes slide_down {
+.tooltip--bottom::before {
+  bottom: -10px;
+  transform: translateY(100%);
+}
+
+.tooltip--top::before {
+  top: -10px;
+  transform: translateY(-100%);
+}
+
+.tooltip--right::before {
+  right: -10px;
+  transform: translateX(100%);
+}
+
+.tooltip--left::before {
+  left: -10px;
+  transform: translateX(-100%);
+}
+
+@keyframes tooltip_appearing {
   from {
     opacity: 0;
     transform: none;

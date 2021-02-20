@@ -15,7 +15,13 @@
       <form id="generate-form">
         <p id="instructions">
           Add entries separated by a comma (,) or a line-break. Requires a
-          minimum of 2 entries. There's a 30% chance of things getting funky!
+          minimum of 2 entries. This roulette picks one of the given entries,
+          using a randomizer tested against the law of large numbers.
+          <span
+            tooltip="For example with 2 entries, each entry is expected to have a 50% chance of being chosen after spinning the wheel a large number of times."
+            class="tooltip--right"
+            ><i class="far fa-question-circle"></i
+          ></span>
         </p>
         <textarea name="entries" id="entries" cols="30" rows="3">
 Entry 1, Entry 2, Entry 3
@@ -25,7 +31,7 @@ Entry 4, Entry 5, Entry 6, Entry 7
           <button
             type="button"
             id="store-entries"
-            class="secondary-button tooltip--no-hover-needed"
+            class="secondary-button tooltip--no-hover-needed tooltip--bottom"
           >
             SAVE A LINK
           </button>
