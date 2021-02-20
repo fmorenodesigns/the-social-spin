@@ -174,3 +174,10 @@ $getEle("#store-entries").addEventListener("click", (e) => {
     $button.removeAttribute("tooltip");
   }, 2000);
 });
+
+$getAllEle(".preset-button").forEach(($button) => {
+  $button.addEventListener("click", () => {
+    $getEle("#entries").value = $button.dataset.preset;
+    loadRoullette();
+  });
+});

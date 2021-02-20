@@ -41,6 +41,7 @@ button {
   -moz-appearance: none;
   -ms-progress-appearance: none;
   padding: 0;
+  position: relative;
 }
 
 button:hover::after {
@@ -88,7 +89,7 @@ button:active::after {
   position: relative;
   width: 100%;
   max-width: var(--roulette-diameter);
-  margin: 30px auto 0;
+  margin: 50px auto 0;
 }
 
 #pointer {
@@ -200,7 +201,7 @@ button:active::after {
 }
 
 #spin {
-  --diameter: 16%;
+  --diameter: 15%;
   font-size: 13pt;
   font-weight: 600;
   background: linear-gradient(
@@ -224,11 +225,11 @@ button:active::after {
 }
 
 #spin:hover {
-  --diameter: 16.5%;
+  --diameter: 15.5%;
 }
 
 #spin:active {
-  --diameter: 15.5%;
+  --diameter: 14.5%;
 }
 
 #generate-form {
@@ -237,7 +238,6 @@ button:active::after {
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 50px;
 }
 
 #generate-form p {
@@ -272,7 +272,6 @@ button:active::after {
   padding: 12px 13px;
   border-radius: 0.25rem;
   letter-spacing: 2px;
-  position: relative;
   transition: top 0.2s ease;
 }
 
@@ -291,4 +290,35 @@ button:active::after {
   padding: 0;
   height: 0;
   overflow: hidden;
+}
+
+#presets {
+  width: 600px;
+  margin: 30px auto 0;
+}
+
+#presets p {
+  font-size: 0.9em;
+}
+
+#presets p,
+#presets h4 {
+  text-align: left;
+  margin: 0;
+}
+
+#preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+#preset-buttons button {
+  margin-right: 10px;
+  color: #6f7072;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  padding: 5px 12px;
+  background-color: transparent;
+  font-weight: 600;
 }
