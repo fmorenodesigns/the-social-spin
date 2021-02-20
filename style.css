@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import "./tooltip.css";
 
 * {
   font-family: "Inter", sans-serif;
@@ -85,10 +86,22 @@ button:active::after {
   align-items: center;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   width: 100%;
   max-width: var(--roulette-diameter);
   margin: 30px auto 0;
+}
+
+#pointer {
+  z-index: 2;
+  width: 4%;
+  position: absolute;
+  top: -2px;
+}
+
+#pointer polygon {
+  stroke-width: 1;
+  fill: #ea613d;
+  stroke: #864e3e;
 }
 
 #roulette-wrapper {
@@ -101,20 +114,6 @@ button:active::after {
   background-color: var(--yellow);
   border: 15px solid var(--yellow);
   box-sizing: border-box;
-}
-
-#pointer {
-  z-index: 2;
-  width: 4%;
-  margin-bottom: calc(-12% + 2px);
-}
-
-#pointer polygon {
-  stroke-width: 1;
-  fill: #ea613d;
-  stroke: #864e3e;
-  stroke-linejoin: round;
-  stroke-linecap: round;
 }
 
 #roulette-wrapper-line-1 {

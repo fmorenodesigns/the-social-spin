@@ -57,6 +57,4 @@ function copyToClipboard(text) {
   document.execCommand("copy");
 
   $fakeInput.remove();
-
-  alert("Link copied!");
 }

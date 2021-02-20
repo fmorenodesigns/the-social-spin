@@ -143,7 +143,8 @@ $getEle("#generate-form").addEventListener("submit", (e) => {
   loadRoullette();
 });
 
-$getEle("#store-entries").addEventListener("click", () => {
+$getEle("#store-entries").addEventListener("click", (e) => {
+  $button = e.target;
   const newEntriesList = cleanEntriesList(
     $getEle("#entries").value.replace(/\n/g, ",").split(",")
   );
@@ -151,4 +152,9 @@ $getEle("#store-entries").addEventListener("click", () => {
   setUrlParam("entries", newEntriesList.join(","));
 
   copyToClipboard(window.location.href);
+
+  $button.setAttribute("tooltip", "Link copied to clipboard");
+  setTimeout(() => {
+    $button.removeAttribute("tooltip");
+  }, 2000);
 });
