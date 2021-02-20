@@ -132,7 +132,11 @@ function loadRoullette() {
   });
 }
 
+var isSpinning = false;
 $getEle("#spin").addEventListener("click", () => {
+  if (isSpinning) return;
+
+  isSpinning = true;
   const $roulette = $getEle("#roulette");
 
   $roulette.style.transition = "none";
@@ -156,7 +160,10 @@ $getEle("#spin").addEventListener("click", () => {
 
     const winningEntry = entries[Math.floor(entries.length * (1 - rand))];
 
-    setTimeout(() => console.log(winningEntry), animationDuration * 1000);
+    setTimeout(() => {
+      console.log(winningEntry);
+      isSpinning = false;
+    }, animationDuration * 1000);
   }, 40);
 });
 
