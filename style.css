@@ -114,6 +114,7 @@ button:active::after {
   background-color: var(--yellow);
   border: 15px solid var(--yellow);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 #roulette-wrapper-line-1 {
