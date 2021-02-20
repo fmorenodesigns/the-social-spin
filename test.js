@@ -1,7 +1,7 @@
 // This is a test of the method for picking a winner against the law of large numbers
 // Run it with node: node test.js from the file's directory
 
-const ITERATIONS = 1000;
+const ITERATIONS = 10000000;
 const entries = ["Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5"];
 
 let results = {};
