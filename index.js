@@ -1,12 +1,10 @@
-let participants = [];
+let entries = [];
 
 window.addEventListener("load", () => {
-  const urlParticipants = cleanParticipantsList(
-    getUrlParam("participants").split(",")
-  );
+  const urlEntries = cleanEntriesList(getUrlParam("entries").split(","));
 
-  if (urlParticipants.length) {
-    $getEle("#participants").value = urlParticipants.join(",");
+  if (urlEntries.length) {
+    $getEle("#entries").value = urlEntries.join(",");
   }
 });
 
@@ -76,7 +74,7 @@ function createRoulette(slices) {
   const sliceCount = slices.length;
 
   if (sliceCount <= 1) {
-    alert("The roulette needs to have at least 2 participants!");
+    alert("The roulette needs to have at least 2 entries!");
     return false;
   }
 
@@ -96,13 +94,13 @@ function createRoulette(slices) {
 }
 
 function loadRoullette() {
-  participants = cleanParticipantsList(
-    $getEle("#participants").value.replace(/\n/g, ",").split(",")
+  entries = cleanEntriesList(
+    $getEle("#entries").value.replace(/\n/g, ",").split(",")
   );
 
-  participants.shuffle();
+  entries.shuffle();
 
-  const created = createRoulette(participants);
+  const created = createRoulette(entries);
   const $rouletteContainer = $getEle("#roulette-container");
 
   $rouletteContainer.classList.toggle("hidden", !created);
@@ -134,7 +132,9 @@ $getEle("#spin").addEventListener("click", () => {
     $roulette.style.transition = `transform ${animationDuration}s cubic-bezier(0.35,-0.15, 0, ${finalCoil})`;
     $roulette.style.transform = `rotate(${completeRounds * 360}deg)`;
 
-    console.log(participants[Math.floor(participants.length * (1 - rand))]);
+    const winningEntry = entries[Math.floor(entries.length * (1 - rand))];
+
+    setTimeout(() => console.log(winningEntry), animationDuration * 1000);
   }, 40);
 });
 
@@ -144,11 +144,11 @@ $getEle("#generate-form").addEventListener("submit", (e) => {
 });
 
 $getEle("#store-entries").addEventListener("click", () => {
-  const newParticipantsList = cleanParticipantsList(
-    $getEle("#participants").value.replace(/\n/g, ",").split(",")
+  const newEntriesList = cleanEntriesList(
+    $getEle("#entries").value.replace(/\n/g, ",").split(",")
   );
 
-  setUrlParam("participants", newParticipantsList.join(","));
+  setUrlParam("entries", newEntriesList.join(","));
 
   copyToClipboard(window.location.href);
 });

@@ -39,10 +39,10 @@ function setUrlParam(paramName, value) {
   window.history.pushState({ path: decodedURL }, "", decodedURL);
 }
 
-function cleanParticipantsList(participantsList) {
-  return participantsList
-    .map((participant) => participant.trim())
-    .filter((participant) => participant.length);
+function cleanEntriesList(entriesList) {
+  return entriesList
+    .map((entry) => entry.trim())
+    .filter((entry) => entry.length);
 }
 
 function copyToClipboard(text) {
