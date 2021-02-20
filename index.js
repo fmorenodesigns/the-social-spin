@@ -7,6 +7,13 @@ window.addEventListener("load", () => {
   if (urlEntries.length) {
     $getEle("#entries").value = urlEntries.join(",");
   }
+
+  // Sets the --roulette-diameter which defines the size of the roulette size delimiter
+  // NB: Not the diameter of the roulette itself. That's defined by the roulette's viewBox
+  document.documentElement.style.setProperty(
+    "--roulette-diameter",
+    `${CIRCLE_RADIUS * 2 + 40}px`
+  );
 });
 
 function createRouletteSlice(sliceName, position, sliceCount) {
@@ -19,10 +26,8 @@ function createRouletteSlice(sliceName, position, sliceCount) {
       : position + 1 - 3 * Math.floor(position / 3);
   const sliceDegrees = 360 / sliceCount;
   const arcRads = degreesToRad(90 - sliceDegrees);
-  const arcEndX =
-    CIRCLE_RADIUS + CIRCLE_RADIUS_MINUS_STROKE * Math.cos(arcRads);
-  const arcEndY =
-    CIRCLE_RADIUS - CIRCLE_RADIUS_MINUS_STROKE * Math.sin(arcRads);
+  const arcEndX = CIRCLE_RADIUS + (CIRCLE_RADIUS - STROKE) * Math.cos(arcRads);
+  const arcEndY = CIRCLE_RADIUS - (CIRCLE_RADIUS - STROKE) * Math.sin(arcRads);
 
   const $slice = document.createElementNS("http://www.w3.org/2000/svg", "path");
   $slice.classList.add("slice");
@@ -31,9 +36,9 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   // <path d="M center_x center_y L center_x 1 A arc_size_x arc_size_y 0 0 1 arcEndX arcEndY" />
   $slice.setAttribute(
     "d",
-    `M ${CIRCLE_RADIUS_PLUS_STROKE} ${CIRCLE_RADIUS}
-     L ${CIRCLE_RADIUS_PLUS_STROKE} ${STROKE}
-     A ${CIRCLE_RADIUS_MINUS_STROKE} ${CIRCLE_RADIUS_MINUS_STROKE}
+    `M ${CIRCLE_RADIUS + STROKE} ${CIRCLE_RADIUS}
+     L ${CIRCLE_RADIUS + STROKE} ${STROKE}
+     A ${CIRCLE_RADIUS - STROKE} ${CIRCLE_RADIUS - STROKE}
      0 0 1 ${arcEndX} ${arcEndY}`
   );
   $slice.style.transform = `rotate(${position * sliceDegrees}deg)`;
@@ -79,14 +84,24 @@ function createRoulette(slices) {
     return false;
   }
 
-  const $roulette = $getEle("#roulette-slices");
+  const $rouletteSlices = $getEle("#roulette-slices");
   const $rouletteNames = $getEle("#roulette-names");
-  $roulette.innerHTML = "";
+  $rouletteSlices.innerHTML = "";
   $rouletteNames.innerHTML = "";
+
+  // set the roulette viewBox
+  $rouletteSlices.setAttribute(
+    "viewBox",
+    `0 0 ${CIRCLE_RADIUS * 2} ${CIRCLE_RADIUS * 2}`
+  );
+  $rouletteNames.setAttribute(
+    "viewBox",
+    `0 0 ${CIRCLE_RADIUS * 2} ${CIRCLE_RADIUS * 2}`
+  );
 
   slices.map((sliceName, position) => {
     slice = createRouletteSlice(sliceName, position, sliceCount);
-    $roulette.appendChild(slice[0]);
+    $rouletteSlices.appendChild(slice[0]);
     $rouletteNames.appendChild(slice[1]);
     $rouletteNames.appendChild(slice[2]);
   });
