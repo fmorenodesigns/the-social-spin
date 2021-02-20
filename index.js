@@ -71,7 +71,7 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   $textPath.innerHTML = sliceName;
   $textPath.classList.add("slice-name-text");
   $text.appendChild($textPath);
-  // end of slice name insertion
+  // End of slice name insertion
 
   return [$slice, $sliceNamePath, $text];
 }
@@ -89,7 +89,7 @@ function createRoulette(slices) {
   $rouletteSlices.innerHTML = "";
   $rouletteNames.innerHTML = "";
 
-  // set the roulette viewBox
+  // Set the roulette viewBox
   $rouletteSlices.setAttribute(
     "viewBox",
     `0 0 ${CIRCLE_RADIUS * 2} ${CIRCLE_RADIUS * 2}`
@@ -124,6 +124,12 @@ function loadRoullette() {
   const $roulette = $getEle("#roulette");
   $roulette.style.transition = "none";
   $roulette.style.transform = "rotate(0deg)";
+
+  // Scroll to the roulette
+  window.scrollTo({
+    top: $rouletteContainer.getBoundingClientRect().top - 30,
+    behavior: "smooth",
+  });
 }
 
 $getEle("#spin").addEventListener("click", () => {
