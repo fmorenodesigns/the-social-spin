@@ -1,7 +1,8 @@
 let entries = [];
 
 window.addEventListener("load", () => {
-  const urlEntries = cleanEntriesList(getUrlParam("entries").split(","));
+  let urlEntries = getUrlParam("entries") || "";
+  urlEntries = cleanEntriesList(urlEntries.split(","));
 
   if (urlEntries.length) {
     $getEle("#entries").value = urlEntries.join(",");
