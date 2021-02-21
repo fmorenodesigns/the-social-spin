@@ -127,7 +127,7 @@ function loadRoullette() {
 
   // Scroll to the roulette
   window.scrollTo({
-    top: $rouletteContainer.getBoundingClientRect().top - 30,
+    top: $rouletteContainer.offsetTop - 60,
     behavior: "smooth",
   });
 }
