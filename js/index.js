@@ -67,11 +67,7 @@ function createRouletteSlice(sliceName, position, sliceCount) {
     "http://www.w3.org/2000/svg",
     "textPath"
   );
-  $textPath.setAttributeNS(
-    "http://www.w3.org/1999/xlink",
-    "xlink:href",
-    `#${sliceNameId}`
-  );
+  $textPath.setAttribute("href", `${window.location.href}#${sliceNameId}`);
   $textPath.setAttribute("startOffset", "44%");
   $textPath.innerHTML = sliceName;
   $textPath.classList.add("slice-name-text");
