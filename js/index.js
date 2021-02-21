@@ -36,9 +36,9 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   // <path d="M center_x center_y L center_x 1 A arc_size_x arc_size_y 0 0 1 arcEndX arcEndY" />
   $slice.setAttribute(
     "d",
-    `M ${CIRCLE_RADIUS + STROKE} ${CIRCLE_RADIUS}
-     L ${CIRCLE_RADIUS + STROKE} ${STROKE}
-     A ${CIRCLE_RADIUS - STROKE} ${CIRCLE_RADIUS - STROKE}
+    `M ${CIRCLE_RADIUS + STROKE},${CIRCLE_RADIUS}
+     L ${CIRCLE_RADIUS + STROKE},${STROKE}
+     A ${CIRCLE_RADIUS - STROKE},${CIRCLE_RADIUS - STROKE}
      0 0 1 ${arcEndX} ${arcEndY}`
   );
   $slice.style.transform = `rotate(${position * sliceDegrees}deg)`;
@@ -52,21 +52,26 @@ function createRouletteSlice(sliceName, position, sliceCount) {
 
   $sliceNamePath.setAttribute(
     "d",
-    `M ${CIRCLE_RADIUS} ${CIRCLE_RADIUS} L ${arcEndX} ${arcEndY} Z`
+    `M ${CIRCLE_RADIUS},${CIRCLE_RADIUS} L ${arcEndX},${arcEndY} Z`
   );
   $sliceNamePath.style.transform = `rotate(${
     position * sliceDegrees - sliceDegrees / 2 + 2.5
   }deg)`;
-  $sliceNamePath.id = position;
+  const sliceNameId = `slice-${position}`;
+  $sliceNamePath.id = sliceNameId;
 
   const $text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  $text.setAttribute("text-anchor", "end");
+
   const $textPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "textPath"
   );
-
-  $textPath.setAttribute("href", "#" + position);
-  $textPath.setAttribute("text-anchor", "end");
+  $textPath.setAttributeNS(
+    "http://www.w3.org/1999/xlink",
+    "xlink:href",
+    `#${sliceNameId}`
+  );
   $textPath.setAttribute("startOffset", "44%");
   $textPath.innerHTML = sliceName;
   $textPath.classList.add("slice-name-text");
@@ -194,3 +199,5 @@ $getAllEle(".preset-button").forEach(($button) => {
     loadRoullette();
   });
 });
+
+loadRoullette();
