@@ -71,8 +71,8 @@ button:active::after {
 }
 
 #instructions {
-  font-size: 1em;
-  line-height: 1.5em;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 header {
@@ -85,7 +85,7 @@ h1 {
   margin: 0;
   font-family: "Bebas Neue", cursive;
   color: var(--primary);
-  font-size: 3em;
+  font-size: 3rem;
   letter-spacing: 1px;
 }
 
@@ -169,7 +169,7 @@ h5 {
   transform-origin: 50% 50%;
   border-radius: 50%;
   background-color: var(--yellow);
-  border: 11px solid var(--yellow);
+  border: 15px solid var(--yellow);
   box-sizing: border-box;
   overflow: hidden;
   position: absolute;
@@ -222,14 +222,14 @@ h5 {
 .slice-name-text {
   font-weight: 600;
   fill: #fff;
-  font-size: 13pt;
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 #spin {
   --diameter: 15%;
-  font-size: 13pt;
+  font-size: 1rem;
   font-weight: 600;
   background: linear-gradient(
     0deg,
@@ -269,11 +269,11 @@ h5 {
 
 #generate-form p {
   text-align: left;
-  font-size: 11pt;
+  font-size: 0.9rem;
 }
 
 #generate-form textarea {
-  font-size: 11pt;
+  font-size: 0.9rem;
   line-height: 18pt;
   margin-bottom: 20px;
   padding: 7px 10px;
@@ -326,7 +326,7 @@ h5 {
 }
 
 #presets p {
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 #presets p,
