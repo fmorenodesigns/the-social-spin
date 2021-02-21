@@ -2,4 +2,12 @@
   #spin {
     font-size: 8pt !important;
   }
+
+  #roulette-wrapper-line-2 {
+    border: 2px solid var(--yellow) !important;
+  }
+
+  #roulette-wrapper {
+    border: 3px solid var(--yellow) !important;
+  }
 }
