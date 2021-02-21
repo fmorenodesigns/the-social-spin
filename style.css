@@ -23,15 +23,6 @@ body {
   background-color: #f5f7f9;
 }
 
-h1 {
-  margin: 0;
-  padding: 20px 0;
-  font-family: "Bebas Neue", cursive;
-  color: var(--primary);
-  font-size: 3em;
-  letter-spacing: 1px;
-}
-
 button {
   overflow: hidden;
   cursor: pointer;
@@ -81,6 +72,32 @@ button:active::after {
 #instructions {
   font-size: 1em;
   line-height: 1.5em;
+}
+
+header {
+  margin: 0;
+  padding: 20px 0;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Bebas Neue", cursive;
+  color: var(--primary);
+  font-size: 3em;
+  letter-spacing: 1px;
+}
+
+h5 {
+  margin: 0;
+}
+
+#github a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.fa-github {
+  margin-right: 5px;
 }
 
 #roulette-container {
