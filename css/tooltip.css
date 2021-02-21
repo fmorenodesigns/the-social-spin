@@ -26,7 +26,8 @@
   z-index: 4;
 }
 
-[tooltip]:hover::before {
+[tooltip]:hover::before,
+[tooltip]:active::before {
   content: attr(tooltip);
 }
 
