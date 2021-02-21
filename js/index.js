@@ -55,14 +55,22 @@ function createRouletteSlice(sliceName, position, sliceCount) {
     "d",
     `M ${CIRCLE_RADIUS},${CIRCLE_RADIUS} L ${arcEndX},${arcEndY} Z`
   );
-  $sliceNamePath.style.transform = `rotate(${
-    position * sliceDegrees - sliceDegrees / 2 + 2.5
-  }deg)`;
   const sliceNameId = `slice-${position}`;
   $sliceNamePath.id = sliceNameId;
 
   const $text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   $text.setAttribute("text-anchor", "end");
+  $text.classList.add("slice-name-text");
+
+  if (navigator.userAgent.indexOf("Firefox") != -1) {
+    $text.style.transform = `rotate(${
+      position * sliceDegrees - sliceDegrees / 2 + 2.5
+    }deg)`;
+  } else {
+    $sliceNamePath.style.transform = `rotate(${
+      position * sliceDegrees - sliceDegrees / 2 + 2.5
+    }deg)`;
+  }
 
   const $textPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -71,7 +79,7 @@ function createRouletteSlice(sliceName, position, sliceCount) {
   $textPath.setAttribute("href", `${window.location.href}#${sliceNameId}`);
   $textPath.setAttribute("startOffset", "44%");
   $textPath.innerHTML = sliceName;
-  $textPath.classList.add("slice-name-text");
+  $textPath.classList.add("slice-name-text-path");
   $text.appendChild($textPath);
   // End of slice name insertion
 

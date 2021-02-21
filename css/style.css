@@ -219,11 +219,15 @@ h5 {
 
 .slice-name {
   fill: transparent;
-  transform-origin: 50% 50%;
   text-align: center;
+  transform-origin: 50% 50%;
 }
 
 .slice-name-text {
+  transform-origin: 50% 50%;
+}
+
+.slice-name-text-path {
   font-weight: 600;
   fill: #fff;
   font-size: 1.1rem;
