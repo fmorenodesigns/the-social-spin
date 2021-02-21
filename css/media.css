@@ -1,13 +1,29 @@
-@media all and (max-width: 400px) {
-  #spin {
-    font-size: 8pt !important;
-  }
-
+@media all and (max-width: 550px) {
   #roulette-wrapper-line-2 {
     border: 2px solid var(--yellow) !important;
   }
 
   #roulette-wrapper {
-    border: 3px solid var(--yellow) !important;
+    border: 10px solid var(--yellow) !important;
+  }
+}
+
+@media all and (max-width: 460px) {
+  #spin {
+    font-size: 0.8rem !important;
+  }
+
+  #roulette-wrapper-line-2 {
+    border: 1px solid var(--yellow) !important;
+  }
+
+  #roulette-wrapper {
+    border: 5px solid var(--yellow) !important;
+  }
+}
+
+@media all and (max-width: 300px) {
+  #spin {
+    font-size: 0.6rem !important;
   }
 }
