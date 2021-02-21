@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import "./tooltip.css";
 @import "./animation.css";
+@import "./media.css";
 
 * {
   font-family: "Inter", sans-serif;
@@ -76,7 +77,8 @@ button:active::after {
 
 header {
   margin: 0;
-  padding: 20px 0;
+  margin-bottom: 20px;
+  padding: 0;
 }
 
 h1 {
@@ -115,6 +117,7 @@ h5 {
   width: 4%;
   position: absolute;
   top: -2px;
+  overflow: visible;
 }
 
 #pointer polygon {
@@ -123,49 +126,55 @@ h5 {
   stroke: #864e3e;
 }
 
-#roulette-wrapper {
-  position: relative;
-  transform-origin: 50% 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--yellow);
-  border: 15px solid var(--yellow);
+#roulette-wrapper-size-delimiter {
+  width: 100%;
+  max-width: var(--roulette-diameter);
   box-sizing: border-box;
-  overflow: hidden;
+  border: 1px solid #666254;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 20px 0px rgb(41 40 37 / 70%);
+  position: relative;
+}
+#roulette-wrapper-size-delimiter::before {
+  content: "";
+  display: block;
+  margin-top: 100%;
 }
 
-#roulette-wrapper-line-1 {
-  border: 1px solid #9c831d;
+.roulette-wrapper-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   border-radius: 50%;
 }
 
 #roulette-wrapper-line-2 {
   border: 3px solid var(--yellow);
-  border-radius: 50%;
 }
 
-#roulette-wrapper-size-delimiter,
+#roulette-wrapper-line-1 {
+  border: 1px solid #9c831d;
+}
+
 #roulette-wrapper-line-0 {
   border: 1px solid #666254;
-  border-radius: 50%;
   box-shadow: inset 0px 0px 20px 0px rgb(41 40 37 / 70%);
+  z-index: 1;
 }
 
-#roulette-wrapper-size-delimiter {
-  width: 100%;
-  max-width: var(--roulette-diameter);
-  max-height: var(--roulette-diameter);
+#roulette-wrapper {
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  background-color: var(--yellow);
+  border: 11px solid var(--yellow);
   box-sizing: border-box;
-}
-
-#roulette-wrapper-line-0 {
+  overflow: hidden;
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
-  z-index: 1;
-  box-sizing: border-box;
 }
 
 #roulette {
@@ -338,6 +347,6 @@ h5 {
   padding: 5px 12px;
   background-color: transparent;
   font-weight: 600;
-  margin-top: 12px;
-  margin-right: 10px;
+  margin-top: 7px;
+  margin-right: 7px;
 }

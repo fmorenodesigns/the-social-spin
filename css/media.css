@@ -1,0 +1,5 @@
+@media all and (max-width: 400px) {
+  #spin {
+    font-size: 8pt !important;
+  }
+}
