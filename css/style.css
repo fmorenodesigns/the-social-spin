@@ -311,7 +311,8 @@ h5 {
 }
 
 #presets {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   margin: 30px auto 0;
 }
 
@@ -328,15 +329,15 @@ h5 {
 #preset-buttons {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 12px;
 }
 
 #preset-buttons button {
-  margin-right: 10px;
   color: #6f7072;
   border: 1px solid;
   border-radius: 0.25rem;
   padding: 5px 12px;
   background-color: transparent;
   font-weight: 600;
+  margin-top: 12px;
+  margin-right: 10px;
 }
