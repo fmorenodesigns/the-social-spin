@@ -1,4 +1,5 @@
 let entries = [];
+var canSpin = false;
 
 window.addEventListener("load", () => {
   let urlEntries = getUrlParam("entries") || "";
@@ -107,6 +108,11 @@ function createRoulette(slices) {
     $rouletteNames.appendChild(slice[2]);
   });
 
+  // Only allow spinning after the initial loading animation is finished
+  if (!canSpin) {
+    setTimeout(() => (canSpin = true), 2000);
+  }
+
   return true;
 }
 
@@ -135,7 +141,7 @@ function loadRoullette() {
 
 var isSpinning = false;
 $getEle("#spin").addEventListener("click", () => {
-  if (isSpinning) return;
+  if (isSpinning || !canSpin) return;
 
   isSpinning = true;
   const $roulette = $getEle("#roulette");
