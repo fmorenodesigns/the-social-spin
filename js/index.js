@@ -209,5 +209,3 @@ $getAllEle(".preset-button").forEach(($button) => {
     loadRoullette();
   });
 });
-
-loadRoullette();
