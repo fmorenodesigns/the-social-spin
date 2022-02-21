@@ -1,0 +1,17 @@
+.tooltip-wrapper {
+  .tooltip {
+    --tooltipBackground: rgba(24, 23, 23, 0.9) !important;
+    --tooltipBorder: rgba(32, 31, 31, 0) !important;
+
+    color: white !important;
+    border: none !important;
+    font-size: 0.8rem !important;
+    line-height: 1.2rem !important;
+    border-radius: 0.25rem !important;
+
+    &-container {
+      max-width: 340px;
+      padding: 6px 10px;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import "./styles.scss";
 
 import React, { useState } from "react";
 import { copyToClipboard, setUrlParam } from "../../utils";
+import Tooltip from "../Tooltip";
 
 interface Props {
   entries: string;
@@ -31,17 +32,18 @@ export default function Entries({ entries, setEntries, parsedEntries }: Props) {
           value={entries}
           onChange={(event) => setEntries(event.currentTarget.value)}
         />
-        <span
-          data-tooltip={
+        <Tooltip
+          placement="left"
+          content={
             copied
               ? "Link copied to clipboard."
               : "Save a link with these entries."
           }
-          className="tooltip--left share-button"
+          className="share-button"
           onClick={saveLink}
         >
           <i className="far fa-copy"></i>
-        </span>
+        </Tooltip>
       </div>
     </div>
   );
