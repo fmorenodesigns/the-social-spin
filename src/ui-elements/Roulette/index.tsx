@@ -2,7 +2,7 @@ import "./styles.scss";
 
 import cx from "classnames";
 import { debounceFn, getSlicePath, randBetween } from "../../utils";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const DIAMETER = 600;
 
@@ -31,6 +31,13 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     }
 
     return newEntries;
+  }, [entries]);
+
+  useEffect(() => {
+    // Reset state if the entries change
+    setWinnerIndex(undefined);
+    setWinnerAngle(0);
+    setSpinning(false);
   }, [entries]);
 
   if (typeof displayedEntries === "undefined") return null;
@@ -87,7 +94,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
         className="roulette-rotating-part"
         style={{
           transform: `rotateZ(${winnerAngle}deg)`,
-          transitionDuration: `${spinningDuration}ms`,
+          transitionDuration: spinning ? `${spinningDuration}ms` : "0ms",
         }}
       >
         <div className="roulette-slices">
