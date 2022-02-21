@@ -18,6 +18,9 @@ export default function Roulette({
   const [winnerAngle, setWinnerAngle] = useState<number>(0);
   const [winnerIndex, setWinnerIndex] = useState<number>();
   const [spinning, setSpinning] = useState<boolean>(false);
+  const [spinningDuration, setSpinningDuration] = useState<number>(
+    _spiningDuration()
+  ); // in ms
 
   const displayedEntries = useMemo(() => {
     // Require a minimum of two entries
@@ -50,7 +53,7 @@ export default function Roulette({
 
     // All angles are given in degrees.
     // A count of full turns the wheel will spin
-    const fullTurnsCount = randBetween(15, 35);
+    const fullTurnsCount = randBetween(20, 35);
     // An angle offset within the winner's slice
     const offsetPadding = sliceAngle * 0.05; // Padding to ensure that the pointer doesn't land on the very edge of the slice
     const inWinnerSliceOffset = randBetween(
@@ -74,7 +77,8 @@ export default function Roulette({
       console.log(" ", displayedEntries[winnerIdx]);
       setWinnerIndex(winnerIdx);
       setSpinning(false);
-    }, 4800);
+      setSpinningDuration(_spiningDuration());
+    }, spinningDuration - 200);
   };
 
   return (
@@ -83,7 +87,7 @@ export default function Roulette({
         className="roulette-rotating-part"
         style={{
           transform: `rotateZ(${winnerAngle}deg)`,
-          transitionDuration: winnerAngle === 0 ? "0s" : "5s",
+          transitionDuration: `${spinningDuration}ms`,
         }}
       >
         <div className="roulette-slices">
@@ -198,4 +202,8 @@ function getGradientName(index: number) {
 
 function isLoser(index: number, winnerIndex?: number) {
   return typeof winnerIndex !== "undefined" && winnerIndex !== index;
+}
+
+function _spiningDuration() {
+  return randBetween(8000, 12000);
 }
