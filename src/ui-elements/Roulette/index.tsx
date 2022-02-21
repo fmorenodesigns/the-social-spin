@@ -1,10 +1,11 @@
 import "./styles.scss";
 
 import cx from "classnames";
-import { debounceFn, getSlicePath, randBetween } from "../../utils";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { getSlicePath, randBetween } from "../../utils";
+import { useEffect, useMemo, useState } from "react";
 
 const DIAMETER = 600;
+let drawWinnerTimeout: any = null;
 
 interface Props {
   entries: string[];
@@ -17,7 +18,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
   const [spinning, setSpinning] = useState<boolean>(false);
   const [spinningDuration, setSpinningDuration] = useState<number>(
     _spiningDuration()
-  ); // in ms
+  );
 
   const displayedEntries = useMemo(() => {
     // Require a minimum of two entries
@@ -35,6 +36,11 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
 
   useEffect(() => {
     // Reset state if the entries change
+    if (drawWinnerTimeout !== null) {
+      console.log(" ", "Aborted!");
+      clearSpinningTimeout();
+    }
+
     setWinnerIndex(undefined);
     setWinnerAngle(0);
     setSpinning(false);
@@ -77,11 +83,12 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     });
 
     console.log("And the winner is...");
-    debounceFn(() => {
+    drawWinnerTimeout = setTimeout(() => {
       console.log(" ", displayedEntries[winnerIdx]);
       setWinnerIndex(winnerIdx);
       setSpinning(false);
       setSpinningDuration(_spiningDuration());
+      clearSpinningTimeout();
     }, spinningDuration - 200);
   };
 
@@ -213,4 +220,9 @@ function isLoser(index: number, winnerIndex?: number) {
 
 function _spiningDuration() {
   return randBetween(8000, 12000);
+}
+
+function clearSpinningTimeout() {
+  clearTimeout(drawWinnerTimeout);
+  drawWinnerTimeout = null;
 }

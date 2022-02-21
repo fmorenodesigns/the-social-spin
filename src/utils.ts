@@ -1,7 +1,3 @@
-export function debounceFn(callbackFn: () => void, timeoutDuration: number) {
-  window.setTimeout(callbackFn, timeoutDuration);
-}
-
 export function cleanEntriesList(entriesList: string[]) {
   return entriesList
     .map((entry) => entry.trim())

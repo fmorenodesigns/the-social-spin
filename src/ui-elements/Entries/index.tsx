@@ -1,7 +1,7 @@
 import "./styles.scss";
 
 import React, { useState } from "react";
-import { copyToClipboard, debounceFn, setUrlParam } from "../../utils";
+import { copyToClipboard, setUrlParam } from "../../utils";
 
 interface Props {
   entries: string;
@@ -17,7 +17,7 @@ export default function Entries({ entries, setEntries, parsedEntries }: Props) {
 
     const copySuccess = await copyToClipboard(window.location.href);
     setCopied(copySuccess);
-    debounceFn(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
