@@ -17,11 +17,8 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgb(62, 34, 63),
-    var(--background)
-  );
+  background: radial-gradient(rgb(62, 34, 63), var(--background));
+  background-attachment: fixed;
   font-size: 15px;
 }
 
