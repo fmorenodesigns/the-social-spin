@@ -50,7 +50,7 @@ export default function Roulette({
 
     // All angles are given in degrees.
     // A count of full turns the wheel will spin
-    const fullTurnsCount = randBetween(10, 20);
+    const fullTurnsCount = randBetween(15, 35);
     // An angle offset within the winner's slice
     const offsetPadding = sliceAngle * 0.05; // Padding to ensure that the pointer doesn't land on the very edge of the slice
     const inWinnerSliceOffset = randBetween(
