@@ -1,0 +1,214 @@
+.roulette {
+  position: relative;
+  min-width: 100px;
+  min-height: 100px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background-color: var(--background);
+  z-index: 0;
+  margin: 0 auto;
+  margin-top: 80px;
+  opacity: 0.98;
+
+  * {
+    user-select: none;
+  }
+
+  &-rotating-part {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-origin: 50% 50%;
+    transition: transform 5s cubic-bezier(0.3, -0.2, 0.3, 1);
+  }
+
+  &-slices {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    transform: rotate(-90deg);
+    border: 1px solid #ab6f22;
+    background-color: var(--background);
+    opacity: 0.9;
+
+    &-svg {
+      position: absolute;
+    }
+
+    &-slice {
+      z-index: 1;
+      transform-origin: 50% 50%;
+      stroke: #f5c010;
+    }
+  }
+
+  &--loser-slice {
+    opacity: 0.12;
+    transition: opacity 0.2s ease;
+  }
+
+  &-entry-names {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transform: rotate(-90deg);
+
+    &-name {
+      --line-height: 14px;
+
+      position: absolute;
+      width: 50%;
+      top: calc(50% - var(--line-height) / 2);
+      left: 50%;
+      transform-origin: 0 calc(var(--line-height) / 2);
+      text-align: right;
+      padding-right: 38px;
+      line-height: var(--line-height);
+      font-family: "Montserrat", "Inter", "Arial";
+      font-size: 19px;
+      letter-spacing: 0.5px;
+      color: rgb(245, 243, 233);
+      text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &-spin-button {
+    --size: 95px;
+
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at top,
+      #fff8af,
+      #ffcc3c,
+      #bb7632,
+      #e19447
+    );
+    z-index: 4;
+    cursor: pointer;
+    filter: brightness(1.1);
+    box-shadow: 0 0 0 1px #da9d2d, 0 0 0 2px #ffb62e, 0 0 0 3px #a8795a,
+      0px 10px 15px 0px rgba(0, 0, 0, 0.4),
+      0px -10px 30px 0px rgba(255, 213, 61, 0.5);
+    transition: filter 0.5s ease, box-shadow 0.5s ease;
+
+    &-text {
+      font-family: "Montserrat", "Inter", "Arial";
+      color: #9b681c;
+      text-shadow: 0px 0px #ffab10, 0px 1px #ffc749;
+      font-size: 17px;
+    }
+
+    &:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 0 0 1px #975e37, 0 0 0 2px #ffb62e, 0 0 0 3px #a8795a,
+        0px 10px 15px 0px rgba(0, 0, 0, 0.4), 0px -10px 40px 0px #ffd53d;
+    }
+
+    &:active {
+      --size: 84px;
+      transition: none;
+      filter: brightness(1);
+      box-shadow: 0 0 0 1px #975e37, 0 0 0 3px #ffb62e, 0 0 0 4px #a8795a,
+        0px 0px 20px 4px rgba(0, 0, 0, 0.5);
+
+      * {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: inset 0 0 120px 30px rgba(0, 0, 0, 0.2),
+      inset 0 0 60px 10px rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 3;
+  }
+
+  &-outer-ring {
+    --thickness: 53px;
+
+    position: absolute;
+    width: calc(100% + var(--thickness));
+    height: calc(100% + var(--thickness));
+    left: calc(0px - var(--thickness) / 2);
+    top: calc(0px - var(--thickness) / 2);
+    background: radial-gradient(
+      ellipse at top,
+      #fff8af,
+      #ffcc3c,
+      #91551a,
+      #e19447,
+      #ffcc3c,
+      #ffcc3c,
+      #a96621,
+      #ffcc3c,
+      #a96621
+    );
+    border-radius: 50%;
+    border: 1px solid rgb(252, 172, 53);
+    box-shadow: 0px 10px 60px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0.95;
+  }
+
+  // Effect on top of the outer ring
+  &::after {
+    --ring-thickness: 2px;
+
+    content: "";
+    width: calc(100% + var(--ring-thickness));
+    height: calc(100% + var(--ring-thickness));
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    border: var(--ring-thickness) solid #8f593a;
+  }
+
+  // Effect on top of the outer ring
+  &::before {
+    --ring-thickness: 6px;
+
+    content: "";
+    width: calc(100% + var(--ring-thickness));
+    height: calc(100% + var(--ring-thickness));
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    border: var(--ring-thickness) solid rgba(161, 104, 18, 0.5);
+    box-shadow: 0px 0px 0px 1px #c28428;
+  }
+
+  &-pointer {
+    --width: 40px;
+
+    position: absolute;
+    width: var(--width);
+    top: -39px;
+    left: calc(50% - var(--width) / 2);
+    z-index: 3;
+    fill: var(--yellow);
+    stroke: rgb(201, 137, 42, 0.4);
+    stroke-width: 1px;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.1));
+  }
+}
