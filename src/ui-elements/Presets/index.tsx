@@ -11,6 +11,7 @@ export default function Presets({ setEntries }: Props) {
         {PRESETS.map((preset) => {
           return (
             <button
+              key={preset.buttonText}
               className="preset"
               onClick={() => setEntries(preset.presetOptions.join(", "))}
             >

@@ -2,7 +2,7 @@ import "./styles.scss";
 
 import cx from "classnames";
 import { debounceFn, getSlicePath, randBetween } from "../../utils";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 interface Props {
   entries: string[];
@@ -19,15 +19,24 @@ export default function Roulette({
   const [winnerIndex, setWinnerIndex] = useState<number>();
   const [spinning, setSpinning] = useState<boolean>(false);
 
-  if (entries.length < 2) return null;
+  const displayedEntries = useMemo(() => {
+    // Require a minimum of two entries
+    if (entries.length < 2) return undefined;
 
-  const displayedEntries = [...entries];
-  // Make the wheel look fuller by adding entry duplicates
-  while (displayedEntries.length < 10) {
-    displayedEntries.push(...entries);
-  }
+    const newEntries = [...entries];
 
-  const sliceAngle = 360 / displayedEntries.length;
+    // Make the wheel look fuller by adding entry duplicates
+    while (newEntries.length < 10) {
+      newEntries.push(...entries);
+    }
+
+    return newEntries;
+  }, [entries]);
+
+  if (typeof displayedEntries === "undefined") return null;
+
+  const entriesCount = displayedEntries.length;
+  const sliceAngle = 360 / entriesCount;
   const svgSize = diameter * 2;
 
   const drawWinner = () => {
@@ -37,7 +46,7 @@ export default function Roulette({
     // Reset the winner so that there's no slice with class "loser"
     setWinnerIndex(undefined);
 
-    const winnerIdx = randBetween(0, displayedEntries.length - 1);
+    const winnerIdx = randBetween(0, entriesCount - 1);
 
     // All angles are given in degrees.
     // A count of full turns the wheel will spin
@@ -101,13 +110,13 @@ export default function Roulette({
               <stop offset="55%" stopColor="#75991b" />
             </linearGradient>
 
-            {displayedEntries.map((_, index) => {
+            {displayedEntries.map((entry, index) => {
               const radius = svgSize / 2 + strokeWidth / 2;
               const gradientName = getGradientName(index);
 
               return (
                 <polygon
-                  key={`slice-${index}`}
+                  key={`slice-${index}-${entry}`}
                   className={cx(
                     "roulette-slices-slice",
                     !!winnerIndex &&
@@ -132,7 +141,7 @@ export default function Roulette({
 
             return (
               <div
-                key={`slice-name-${index}`}
+                key={`slice-name-${index}-${entry}`}
                 className={cx(
                   "roulette-entry-names-name",
                   !!winnerIndex &&
