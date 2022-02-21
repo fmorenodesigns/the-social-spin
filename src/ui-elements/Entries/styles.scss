@@ -1,4 +1,6 @@
 .entries {
+  align-self: stretch;
+
   &-title {
     font-weight: bold;
     padding: 9px 5px;
@@ -20,6 +22,8 @@
       background-color: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-top: 3px solid var(--yellow);
+      appearance: none;
+      border-radius: 0.25rem;
     }
 
     .share-button {

@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 8px;
+  align-self: stretch;
 
   .preset {
     padding: 3px 8px;
@@ -11,6 +12,7 @@
     font-size: 0.8rem;
     flex-shrink: 0;
     opacity: 0.5;
+    margin-bottom: 9px;
 
     &:not(:last-of-type) {
       margin-right: 9px;

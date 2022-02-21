@@ -4,17 +4,14 @@ import cx from "classnames";
 import { debounceFn, getSlicePath, randBetween } from "../../utils";
 import { useMemo, useState } from "react";
 
+const DIAMETER = 600;
+
 interface Props {
   entries: string[];
-  diameter?: number;
   strokeWidth?: number;
 }
 
-export default function Roulette({
-  entries,
-  diameter = 600,
-  strokeWidth = 1,
-}: Props) {
+export default function Roulette({ entries, strokeWidth = 1 }: Props) {
   const [winnerAngle, setWinnerAngle] = useState<number>(0);
   const [winnerIndex, setWinnerIndex] = useState<number>();
   const [spinning, setSpinning] = useState<boolean>(false);
@@ -40,7 +37,7 @@ export default function Roulette({
 
   const entriesCount = displayedEntries.length;
   const sliceAngle = 360 / entriesCount;
-  const svgSize = diameter * 2;
+  const svgSize = DIAMETER * 2;
 
   const drawWinner = () => {
     if (spinning) return;
@@ -82,7 +79,10 @@ export default function Roulette({
   };
 
   return (
-    <div className="roulette" style={{ width: diameter, height: diameter }}>
+    <div
+      className="roulette"
+      style={{ ["--diameter" as any]: `${DIAMETER}px` }}
+    >
       <div
         className="roulette-rotating-part"
         style={{
@@ -205,5 +205,5 @@ function isLoser(index: number, winnerIndex?: number) {
 }
 
 function _spiningDuration() {
-  return randBetween(8000, 12000);
+  return randBetween(8000, 12);
 }

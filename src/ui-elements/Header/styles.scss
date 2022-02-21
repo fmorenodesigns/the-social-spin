@@ -1,8 +1,18 @@
 .page-header {
-  text-align: center;
   margin: 20px 0;
+  text-align: center;
 
   .logo {
     image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .page-header {
+    margin: 5px 0;
+
+    .logo {
+      height: 80px;
+    }
   }
 }
