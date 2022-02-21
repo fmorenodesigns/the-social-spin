@@ -8,6 +8,7 @@ import Instructions from "../ui-elements/Instructions";
 import Roulette from "../ui-elements/Roulette";
 import { cleanEntriesList, getUrlParam } from "../utils";
 import Credits from "../ui-elements/Credits";
+import Presets from "../ui-elements/Presets";
 
 const defaultEntries = "Entry 1, Entry 2, Entry 3\nEntry 4, Entry 5, Entry 6";
 
@@ -27,6 +28,7 @@ export default function Page() {
         setEntries={setEntries}
         parsedEntries={parsedEntries}
       />
+      <Presets setEntries={setEntries} />
       <Instructions />
       <Roulette entries={parsedEntries} />
       <Credits />

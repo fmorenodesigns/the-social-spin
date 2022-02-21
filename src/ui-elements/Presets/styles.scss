@@ -1,0 +1,28 @@
+#presets {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+
+  .preset {
+    padding: 3px 8px;
+    color: var(--offwhite);
+    border: 1px solid;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    opacity: 0.5;
+
+    &:not(:last-of-type) {
+      margin-right: 9px;
+    }
+
+    &:hover {
+      opacity: 1;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+}
