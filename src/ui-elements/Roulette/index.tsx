@@ -119,9 +119,7 @@ export default function Roulette({
                   key={`slice-${index}-${entry}`}
                   className={cx(
                     "roulette-slices-slice",
-                    !!winnerIndex &&
-                      winnerIndex !== index &&
-                      "roulette--loser-slice"
+                    isLoser(index, winnerIndex) && "roulette--loser-slice"
                   )}
                   points={getSlicePath(radius, sliceAngle)}
                   style={{
@@ -144,9 +142,7 @@ export default function Roulette({
                 key={`slice-name-${index}-${entry}`}
                 className={cx(
                   "roulette-entry-names-name",
-                  !!winnerIndex &&
-                    winnerIndex !== index &&
-                    "roulette--loser-slice"
+                  isLoser(index, winnerIndex) && "roulette--loser-slice"
                 )}
                 style={{
                   transform: `rotate(${rotate}deg`,
@@ -198,4 +194,8 @@ function getGradientName(index: number) {
     case 3:
       return "green";
   }
+}
+
+function isLoser(index: number, winnerIndex?: number) {
+  return typeof winnerIndex !== "undefined" && winnerIndex !== index;
 }
