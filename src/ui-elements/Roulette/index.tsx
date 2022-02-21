@@ -205,5 +205,5 @@ function isLoser(index: number, winnerIndex?: number) {
 }
 
 function _spiningDuration() {
-  return randBetween(8000, 12);
+  return randBetween(8000, 12000);
 }
