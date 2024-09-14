@@ -6,7 +6,7 @@ import React from "react";
 
 import { DIAMETER } from "./settings";
 import {
-  entriesChanged,
+  areEntriesSimilar,
   getGradientName,
   getSlicePath,
   getSpiningDuration,
@@ -30,7 +30,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
   const spinTimeoutId = useRef<number>();
   const clearSpinTimeout = () => window.clearTimeout(spinTimeoutId.current);
 
-  if (entriesChanged(currentEntries, entries)) {
+  if (!areEntriesSimilar(currentEntries, entries)) {
     // Reset state if the entries change
     setWinnerIndex(undefined);
     setWinnerAngle(0);

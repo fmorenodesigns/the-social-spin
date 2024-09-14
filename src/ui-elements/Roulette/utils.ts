@@ -10,13 +10,13 @@ export function getSpiningDuration() {
   return pickRandomIntegerBetween(8000, 12000);
 }
 
-export function entriesChanged<T extends string[]>(
+export function areEntriesSimilar<T extends string[]>(
   entriesA: T,
   entriesB: T
 ): boolean {
   return (
-    entriesA.some((entry) => !entriesB.includes(entry)) ||
-    entriesB.some((entry) => !entriesA.includes(entry))
+    entriesA.every((entry) => entriesB.includes(entry)) &&
+    entriesB.every((entry) => entriesA.includes(entry))
   );
 }
 

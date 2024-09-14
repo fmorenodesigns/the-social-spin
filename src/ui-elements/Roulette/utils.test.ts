@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import { pickRandomIntegerBetween } from "./utils";
+import { areEntriesSimilar, pickRandomIntegerBetween } from "./utils";
 
 test("Test `pickRandomIntegerBetween`", () => {
   const ITERATIONS = 10000000;
@@ -28,4 +28,14 @@ test("Test `pickRandomIntegerBetween`", () => {
   expect(results[2].percentage).toBeCloseTo(0.2);
   expect(results[3].percentage).toBeCloseTo(0.2);
   expect(results[3].percentage).toBeCloseTo(0.2);
+});
+
+test.each([
+  [[], [], true],
+  [["Dog"], [], false],
+  [["Dog"], ["Dog"], true],
+  [["Dog"], ["Dog", "Cat"], false],
+  [["Cat", "Dog"], ["Dog", "Cat"], true],
+])("Test `areEntriesSimilar`", (entriesA, entriesB, expectedResult) => {
+  expect(areEntriesSimilar(entriesA, entriesB)).toBe(expectedResult);
 });
