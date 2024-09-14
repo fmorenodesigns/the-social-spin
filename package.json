@@ -10,7 +10,7 @@
     "build:error-page": "copy .\\dist\\index.html .\\dist\\404.html",
     "build:custom-domain": "echo thesocialspin.fmoreno.me > ./dist/CNAME",
     "deploy": "npm run build && npm run build:custom-domain && npm run build:error-page && gh-pages -d dist",
-    "test": "ts-node ./src/test.ts"
+    "test": "vitest"
   },
   "browserslist": {
     "production": [
@@ -34,9 +34,9 @@
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "eslint": "^8.57.0",
     "@typescript-eslint/eslint-plugin": "^8.5.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
@@ -47,7 +47,8 @@
     "vite": "^5.4.5",
     "vite-plugin-checker": "^0.8.0",
     "vite-plugin-svgr": "^4.2.0",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.1.1"
   },
   "homepage": "."
 }
