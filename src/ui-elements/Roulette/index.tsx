@@ -1,13 +1,18 @@
 import "./styles.scss";
 
 import cx from "classnames";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import React from "react";
 
 import { getSlicePath, randBetween } from "../../utils";
 
-const DIAMETER = 600;
-let drawWinnerTimeout: any = null;
+import { DIAMETER } from "./settings";
+import {
+  entriesChanged,
+  getGradientName,
+  getSpiningDuration,
+  isLoser,
+} from "./utils";
 
 interface Props {
   entries: string[];
@@ -15,37 +20,36 @@ interface Props {
 }
 
 export default function Roulette({ entries, strokeWidth = 1 }: Props) {
+  const [currentEntries, setCurrentEntries] = useState(entries);
   const [winnerAngle, setWinnerAngle] = useState<number>(0);
   const [winnerIndex, setWinnerIndex] = useState<number>();
   const [spinning, setSpinning] = useState<boolean>(false);
   const [spinningDuration, setSpinningDuration] = useState<number>(
-    _spiningDuration()
+    getSpiningDuration()
   );
+  const spinTimeoutId = useRef<number>();
+  const clearSpinTimeout = () => clearTimeout(spinTimeoutId.current);
+
+  if (entriesChanged(currentEntries, entries)) {
+    // Reset state if the entries change
+    setWinnerIndex(undefined);
+    setWinnerAngle(0);
+    setSpinning(false);
+    setCurrentEntries(entries);
+    clearSpinTimeout();
+  }
 
   const displayedEntries = useMemo(() => {
     // Require a minimum of two entries
     if (entries.length < 2) return undefined;
 
-    const newEntries = [...entries];
-
     // Make the wheel look fuller by adding entry duplicates
+    const newEntries = [...entries];
     while (newEntries.length < 10) {
       newEntries.push(...entries);
     }
 
     return newEntries;
-  }, [entries]);
-
-  useEffect(() => {
-    // Reset state if the entries change
-    if (drawWinnerTimeout !== null) {
-      console.log(" ", "Aborted!");
-      clearSpinningTimeout();
-    }
-
-    setWinnerIndex(undefined);
-    setWinnerAngle(0);
-    setSpinning(false);
   }, [entries]);
 
   if (typeof displayedEntries === "undefined") return null;
@@ -85,12 +89,13 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     });
 
     console.log("And the winner is...");
-    drawWinnerTimeout = setTimeout(() => {
-      console.log(" ", displayedEntries[winnerIdx]);
+    spinTimeoutId.current = setTimeout(() => {
+      console.log(currentEntries[winnerIdx]);
+
       setWinnerIndex(winnerIdx);
       setSpinning(false);
-      setSpinningDuration(_spiningDuration());
-      clearSpinningTimeout();
+      setSpinningDuration(getSpiningDuration());
+      clearSpinTimeout();
     }, spinningDuration - 200);
   };
 
@@ -200,31 +205,4 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
       </svg>
     </div>
   );
-}
-
-function getGradientName(index: number) {
-  switch (index % 4) {
-    case 0:
-      return "purple";
-    case 1:
-      return "orange";
-    case 2:
-      return "pink";
-    default:
-    case 3:
-      return "green";
-  }
-}
-
-function isLoser(index: number, winnerIndex?: number) {
-  return typeof winnerIndex !== "undefined" && winnerIndex !== index;
-}
-
-function _spiningDuration() {
-  return randBetween(8000, 12000);
-}
-
-function clearSpinningTimeout() {
-  clearTimeout(drawWinnerTimeout);
-  drawWinnerTimeout = null;
 }
