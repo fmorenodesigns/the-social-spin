@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 
 import { pickRandomIntegerBetween } from "./utils";
 
-test("Test `pickWinningNumber`", () => {
+test("Test `pickRandomIntegerBetween`", () => {
   const ITERATIONS = 10000000;
   const entries = ["Dog", "Duck", "Cat", "Bird", "Lion"];
 
