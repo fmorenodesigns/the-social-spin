@@ -35,8 +35,8 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     setWinnerIndex(undefined);
     setWinnerAngle(0);
     setSpinning(false);
-    setCurrentEntries(entries);
     clearSpinTimeout();
+    setCurrentEntries(entries);
   }
 
   const displayedEntries = useMemo(() => {
@@ -90,7 +90,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
 
     console.log("And the winner is...");
     spinTimeoutId.current = setTimeout(() => {
-      console.log(currentEntries[winnerIdx]);
+      console.log(displayedEntries[winnerIdx]);
 
       setWinnerIndex(winnerIdx);
       setSpinning(false);
