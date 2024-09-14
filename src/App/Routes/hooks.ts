@@ -51,7 +51,7 @@ function isExternalPath(path: string): boolean {
     const targetUrl = new URL(path, currentOrigin);
 
     return currentOrigin.hostname !== targetUrl.hostname;
-  } catch (error) {
+  } catch {
     // Handle invalid URLs
     return true;
   }
