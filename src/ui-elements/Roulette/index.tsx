@@ -4,8 +4,6 @@ import cx from "classnames";
 import { useMemo, useRef, useState } from "react";
 import React from "react";
 
-import { pickRandomIntegerBetween } from "../../utils";
-
 import { DIAMETER } from "./settings";
 import {
   entriesChanged,
@@ -13,6 +11,7 @@ import {
   getSlicePath,
   getSpiningDuration,
   isLoser,
+  pickRandomIntegerBetween,
 } from "./utils";
 
 interface Props {

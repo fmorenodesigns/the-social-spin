@@ -1,4 +1,6 @@
-import { pickRandomIntegerBetween } from "../../utils";
+export function pickRandomIntegerBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 export function isLoser(index: number, winnerIndex?: number) {
   return typeof winnerIndex !== "undefined" && winnerIndex !== index;
