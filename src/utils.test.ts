@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import { pickingWinningNumber } from "./utils";
+import { pickRandomIntegerBetween } from "./utils";
 
 test("Test `pickWinningNumber`", () => {
   const ITERATIONS = 10000000;
@@ -15,7 +15,7 @@ test("Test `pickWinningNumber`", () => {
   }, {} as { [index: number]: { count: number; percentage: number } });
 
   for (let i = 0; i < ITERATIONS; i++) {
-    const entryIndex = pickingWinningNumber(0, entries.length - 1);
+    const entryIndex = pickRandomIntegerBetween(0, entries.length - 1);
     results[entryIndex].count += 1;
   }
 
