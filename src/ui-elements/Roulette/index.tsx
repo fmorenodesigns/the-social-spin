@@ -4,7 +4,7 @@ import cx from "classnames";
 import { useMemo, useRef, useState } from "react";
 import React from "react";
 
-import { randBetween } from "../../utils";
+import { pickingWinningNumber } from "../../utils";
 
 import { DIAMETER } from "./settings";
 import {
@@ -66,14 +66,14 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     // Reset the winner so that there's no slice with class "loser"
     setWinnerIndex(undefined);
 
-    const winnerIdx = randBetween(0, entriesCount - 1);
+    const winnerIdx = pickingWinningNumber(0, entriesCount - 1);
 
     // All angles are given in degrees.
     // A count of full turns the wheel will spin
-    const fullTurnsCount = randBetween(20, 35);
+    const fullTurnsCount = pickingWinningNumber(20, 35);
     // An angle offset within the winner's slice
     const offsetPadding = sliceAngle * 0.05; // Padding to ensure that the pointer doesn't land on the very edge of the slice
-    const inWinnerSliceOffset = randBetween(
+    const inWinnerSliceOffset = pickingWinningNumber(
       offsetPadding,
       sliceAngle - offsetPadding
     );

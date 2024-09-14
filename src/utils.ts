@@ -13,6 +13,6 @@ export function setUrlParam(paramName: string, value: string) {
   window.history.pushState({ path: decodedURL }, "", decodedURL);
 }
 
-export function randBetween(min: number, max: number) {
+export function pickingWinningNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }

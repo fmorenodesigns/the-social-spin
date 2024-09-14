@@ -1,11 +1,11 @@
-import { randBetween } from "../../utils";
+import { pickingWinningNumber } from "../../utils";
 
 export function isLoser(index: number, winnerIndex?: number) {
   return typeof winnerIndex !== "undefined" && winnerIndex !== index;
 }
 
 export function getSpiningDuration() {
-  return randBetween(8000, 12000);
+  return pickingWinningNumber(8000, 12000);
 }
 
 export function entriesChanged<T extends string[]>(

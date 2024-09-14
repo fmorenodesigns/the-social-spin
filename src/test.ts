@@ -1,7 +1,7 @@
 // This is a test of the method for picking a winner against the law of large numbers
 // Run it with the command: `npm run test` from the file's directory
 
-import { randBetween } from "./utils";
+import { pickingWinningNumber } from "./utils";
 
 const ITERATIONS = 10000000;
 const entries = ["Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5"];
@@ -17,7 +17,7 @@ entries.forEach((_, index) => {
 
 for (let i = 0; i < ITERATIONS; i++) {
   // the method for picking a winner
-  const entryIndex = randBetween(0, entries.length - 1);
+  const entryIndex = pickingWinningNumber(0, entries.length - 1);
   //
 
   results[entryIndex].count += 1;
