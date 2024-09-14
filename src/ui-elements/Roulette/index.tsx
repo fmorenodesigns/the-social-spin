@@ -29,7 +29,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     getSpiningDuration()
   );
   const spinTimeoutId = useRef<number>();
-  const clearSpinTimeout = () => clearTimeout(spinTimeoutId.current);
+  const clearSpinTimeout = () => window.clearTimeout(spinTimeoutId.current);
 
   if (entriesChanged(currentEntries, entries)) {
     // Reset state if the entries change
@@ -90,7 +90,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
     });
 
     console.log("And the winner is...");
-    spinTimeoutId.current = setTimeout(() => {
+    spinTimeoutId.current = window.setTimeout(() => {
       console.log(displayedEntries[winnerIdx]);
 
       setWinnerIndex(winnerIdx);

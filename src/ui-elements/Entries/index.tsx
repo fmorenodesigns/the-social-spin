@@ -21,7 +21,7 @@ export default function Entries({ entries, setEntries, parsedEntries }: Props) {
 
     const copySuccess = await copyToClipboard(window.location.href);
     setCopied(copySuccess);
-    setTimeout(() => setCopied(false), 2000);
+    window.setTimeout(() => setCopied(false), 2000);
   };
 
   return (
