@@ -1,17 +1,21 @@
 import "./styles.scss";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react";
 
 import Page from "../Page";
 
+import Routes from "./Routes";
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/">
-          <Page />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Routes
+      routes={[
+        {
+          path: "/",
+          element: <Page />,
+        },
+        // { path: ".*", element: <PageNotFound /> },
+      ]}
+    />
   );
 }

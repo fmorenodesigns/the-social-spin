@@ -6,7 +6,7 @@ import { randBetween } from "./utils";
 const ITERATIONS = 10000000;
 const entries = ["Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5"];
 
-let results: { [index: number]: { count: number; percentage: number } } = {};
+const results: { [index: number]: { count: number; percentage: number } } = {};
 
 entries.forEach((_, index) => {
   results[index] = {

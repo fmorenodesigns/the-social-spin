@@ -1,14 +1,15 @@
 import "./styles.scss";
 
 import { useMemo, useState } from "react";
+import React from "react";
 
+import Credits from "../ui-elements/Credits";
 import Entries from "../ui-elements/Entries";
 import Header from "../ui-elements/Header";
 import Instructions from "../ui-elements/Instructions";
+import Presets from "../ui-elements/Presets";
 import Roulette from "../ui-elements/Roulette";
 import { cleanEntriesList, getUrlParam } from "../utils";
-import Credits from "../ui-elements/Credits";
-import Presets from "../ui-elements/Presets";
 
 const defaultEntries = "Entry 1, Entry 2, Entry 3\nEntry 4, Entry 5, Entry 6";
 

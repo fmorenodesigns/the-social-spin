@@ -1,8 +1,10 @@
 import "./styles.scss";
 
 import cx from "classnames";
-import { getSlicePath, randBetween } from "../../utils";
 import { useEffect, useMemo, useState } from "react";
+import React from "react";
+
+import { getSlicePath, randBetween } from "../../utils";
 
 const DIAMETER = 600;
 let drawWinnerTimeout: any = null;

@@ -35,7 +35,7 @@ export function getSlicePath(radius: number, angle: number) {
 }
 
 export async function copyToClipboard(text: string) {
-  var data = [
+  const data = [
     new ClipboardItem({
       "text/plain": new Blob([text], { type: "text/plain" }),
     }),

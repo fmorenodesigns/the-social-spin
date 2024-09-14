@@ -1,6 +1,7 @@
 import "./styles.scss";
 
 import React, { useState } from "react";
+
 import { copyToClipboard, setUrlParam } from "../../utils";
 import Tooltip from "../Tooltip";
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
 import "react-popper-tooltip/dist/styles.css";
 import "./styles.scss";
@@ -19,7 +20,7 @@ type TooltipPlacement =
   | "left-start"
   | "left-end";
 
-interface Props extends React.HTMLAttributes<HTMLSpanElement> {
+interface Props extends Omit<React.HTMLAttributes<HTMLSpanElement>, "content"> {
   children: React.ReactNode;
   content: React.ReactNode;
   placement?: TooltipPlacement;
