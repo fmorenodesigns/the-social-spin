@@ -2,8 +2,10 @@ import "./styles.scss";
 
 import React, { useState } from "react";
 
-import { copyToClipboard, setUrlParam } from "../../utils";
+import { setUrlParam } from "../../utils";
 import Tooltip from "../Tooltip";
+
+import { copyToClipboard } from "./utils";
 
 interface Props {
   entries: string;

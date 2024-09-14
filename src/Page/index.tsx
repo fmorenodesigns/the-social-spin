@@ -9,7 +9,9 @@ import Header from "../ui-elements/Header";
 import Instructions from "../ui-elements/Instructions";
 import Presets from "../ui-elements/Presets";
 import Roulette from "../ui-elements/Roulette";
-import { cleanEntriesList, getUrlParam } from "../utils";
+import { getUrlParam } from "../utils";
+
+import { cleanEntriesList } from "./utils";
 
 const defaultEntries = "Entry 1, Entry 2, Entry 3\nEntry 4, Entry 5, Entry 6";
 

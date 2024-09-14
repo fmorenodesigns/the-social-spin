@@ -4,12 +4,13 @@ import cx from "classnames";
 import { useMemo, useRef, useState } from "react";
 import React from "react";
 
-import { getSlicePath, randBetween } from "../../utils";
+import { randBetween } from "../../utils";
 
 import { DIAMETER } from "./settings";
 import {
   entriesChanged,
   getGradientName,
+  getSlicePath,
   getSpiningDuration,
   isLoser,
 } from "./utils";
