@@ -16,3 +16,18 @@ function setUrlParam(paramName: string, value: string) {
 export function saveEntriesToUrl(entries: string[]) {
   setUrlParam("entries", entries.join(","));
 }
+
+export function parseEntriesText(entriesText: string) {
+  const entriesList = entriesText.replace(/\n/g, ",").split(",");
+
+  return entriesList
+    .map((entry) => entry.trim())
+    .filter((entry) => entry.length);
+}
+
+export function getEntriesFromUrl(): string | null {
+  const entries = getUrlParam("entries");
+  if (!entries) return null;
+
+  return parseEntriesText(entries).join(", ");
+}
