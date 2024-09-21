@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src/**/*.ts{,x}",
     "lint:fix": "eslint src/**/*.ts{,x} --fix",
-    "build:error-page": "copy .\\dist\\index.html .\\dist\\404.html",
+    "build:error-page": "node build-error-page.mjs",
     "build:custom-domain": "echo thesocialspin.fmoreno.me > ./dist/CNAME",
     "deploy": "npm run build && npm run build:custom-domain && npm run build:error-page && gh-pages -d dist",
     "test": "vitest"
