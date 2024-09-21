@@ -60,7 +60,7 @@ const PRESETS = [
     buttonText: "Food",
     presetOptions: [
       "Pizza",
-      "Hamburguer",
+      "Hamburger",
       "Sushi",
       "Pasta",
       "Salad",
