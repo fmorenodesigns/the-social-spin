@@ -9,7 +9,7 @@ import Header from "../ui-elements/Header";
 import Instructions from "../ui-elements/Instructions";
 import Presets from "../ui-elements/Presets";
 import Roulette from "../ui-elements/Roulette";
-import { getUrlParam } from "../utils";
+import { getUrlParam, saveEntriesToUrl } from "../utils";
 
 import { cleanEntriesList } from "./utils";
 
@@ -20,17 +20,16 @@ export default function Page() {
   const [entries, setEntries] = useState<string>(entriesFromUrl);
 
   const parsedEntries = useMemo(() => {
-    return cleanEntriesList(entries.replace(/\n/g, ",").split(","));
+    const result = cleanEntriesList(entries.replace(/\n/g, ",").split(","));
+    saveEntriesToUrl(result);
+
+    return result;
   }, [entries]);
 
   return (
     <div className="page-container">
       <Header />
-      <Entries
-        entries={entries}
-        setEntries={setEntries}
-        parsedEntries={parsedEntries}
-      />
+      <Entries entries={entries} setEntries={setEntries} />
       <Presets setEntries={setEntries} />
       <Instructions />
       <Roulette entries={parsedEntries} />
