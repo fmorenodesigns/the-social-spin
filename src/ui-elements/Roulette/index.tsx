@@ -4,10 +4,12 @@ import cx from "classnames";
 import { useMemo, useRef, useState } from "react";
 import React from "react";
 
-import { DIAMETER } from "./settings";
+import Colors from "./Colors";
+import Pointer from "./Pointer";
+import { COLORS, COLORS_COUNT, DIAMETER } from "./settings";
 import {
   areEntriesSimilar,
-  getGradientName,
+  getColorId,
   getSlicePath,
   getSpiningDuration,
   isLoser,
@@ -118,26 +120,11 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
             className="roulette-slices-svg"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <linearGradient id="purple-gradient">
-              <stop offset="0%" stopColor="#835687" />
-              <stop offset="55%" stopColor="#3a2b40" />
-            </linearGradient>
-            <linearGradient id="orange-gradient">
-              <stop offset="0%" stopColor="#f8f445" />
-              <stop offset="55%" stopColor="#e27220" />
-            </linearGradient>
-            <linearGradient id="pink-gradient">
-              <stop offset="0%" stopColor="#fe2392" />
-              <stop offset="55%" stopColor="#82113e" />
-            </linearGradient>
-            <linearGradient id="green-gradient">
-              <stop offset="0%" stopColor="#f2f23f" />
-              <stop offset="55%" stopColor="#75991b" />
-            </linearGradient>
+            <Colors />
 
             {displayedEntries.map((entry, index) => {
               const radius = svgSize / 2 + strokeWidth / 2;
-              const gradientName = getGradientName(index);
+              const color = COLORS[index % COLORS_COUNT].name;
 
               return (
                 <polygon
@@ -150,7 +137,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
                   style={{
                     transform: `rotate(${index / (1 / sliceAngle)}deg`,
                     strokeWidth,
-                    fill: `url('#${gradientName}-gradient')`,
+                    fill: `url('#${getColorId(color)}')`,
                   }}
                 />
               );
@@ -179,30 +166,15 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
           })}
         </div>
       </div>
+
       <div className="roulette-spin-button" onClick={drawWinner}>
         <div className="roulette-spin-button-text">SPIN</div>
       </div>
+
       <div className="roulette-shadow" />
       <div className="roulette-outer-ring" />
-      <svg
-        className="roulette-pointer"
-        viewBox="0 0 40 80"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <linearGradient id="pointer-gradient">
-          <stop offset="0%" stopColor="#efd574" />
-          <stop offset="20%" stopColor="#efd574" />
-          <stop offset="50%" stopColor="#ede191" />
-          <stop offset="50%" stopColor="#efd574" />
-          <stop offset="50%" stopColor="#c59329" />
-          <stop offset="90%" stopColor="#a96621" />
-          <stop offset="100%" stopColor="#a96621" />
-        </linearGradient>
-        <path
-          d="M0 12.6316L20 0L40 12.6316L20 80L0 12.6316Z"
-          fill="url('#pointer-gradient')"
-        />
-      </svg>
+
+      <Pointer />
     </div>
   );
 }

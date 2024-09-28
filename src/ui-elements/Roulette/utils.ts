@@ -1,3 +1,5 @@
+import { Color } from "./types";
+
 export function pickRandomIntegerBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -50,16 +52,6 @@ export function getSlicePath(radius: number, angle: number) {
   return `${radius} ${radius}, ${diameter} ${radius}, ${diameter} ${diameter}, ${radius} ${diameter}, 0 ${diameter}, 0 ${radius}, 0 0, ${radius} 0, ${diameter} 0, ${x} ${y}`;
 }
 
-export function getGradientName(index: number) {
-  switch (index % 4) {
-    case 0:
-      return "purple";
-    case 1:
-      return "orange";
-    case 2:
-      return "pink";
-    case 3:
-    default:
-      return "green";
-  }
+export function getColorId(color: Color) {
+  return `roulette-color-${color}`;
 }
