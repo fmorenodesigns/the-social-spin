@@ -6,7 +6,7 @@ import React from "react";
 
 import Colors from "./Colors";
 import Pointer from "./Pointer";
-import { COLORS, COLORS_COUNT, DIAMETER } from "./settings";
+import { COLOR_NAMES, COLORS_COUNT, DIAMETER } from "./settings";
 import {
   areEntriesSimilar,
   getColorId,
@@ -124,7 +124,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
 
             {displayedEntries.map((entry, index) => {
               const radius = svgSize / 2 + strokeWidth / 2;
-              const color = COLORS[index % COLORS_COUNT].name;
+              const color = COLOR_NAMES[index % COLORS_COUNT];
 
               return (
                 <polygon

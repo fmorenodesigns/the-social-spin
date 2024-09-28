@@ -1,27 +1,22 @@
-import { Color } from "./types";
-
 export const DIAMETER = 600;
 
-export const COLORS: { name: Color; start: string; end: string }[] = [
-  {
-    name: Color.Purple,
+export const COLORS: { [name: string]: { start: string; end: string } } = {
+  purple: {
     start: "#835687",
     end: "#3a2b40",
   },
-  {
-    name: Color.Orange,
+  orange: {
     start: "#f8f445",
     end: "#e27220",
   },
-  {
-    name: Color.Pink,
+  pink: {
     start: "#fe2392",
     end: "#82113e",
   },
-  {
-    name: Color.Green,
+  green: {
     start: "#f2f23f",
     end: "#75991b",
   },
-];
-export const COLORS_COUNT = COLORS.length;
+};
+export const COLOR_NAMES = Object.keys(COLORS);
+export const COLORS_COUNT = COLOR_NAMES.length;
