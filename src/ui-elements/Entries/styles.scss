@@ -30,8 +30,6 @@
       position: absolute;
       top: 0px;
       right: 0px;
-      font-size: 17px;
-      color: var(--yellow);
       cursor: pointer;
       padding: 12px;
 
@@ -47,15 +45,16 @@
         padding-left: 12px;
       }
 
-      i {
+      svg {
         opacity: 0.6;
+        display: block;
       }
 
-      &:hover i {
+      &:hover svg {
         opacity: 1;
       }
 
-      &:active i {
+      &:active svg {
         opacity: 0.6;
       }
     }
