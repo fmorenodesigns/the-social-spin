@@ -6,7 +6,12 @@ import React from "react";
 
 import Colors from "./Colors";
 import Pointer from "./Pointer";
-import { COLOR_NAMES, COLORS_COUNT, DIAMETER } from "./settings";
+import {
+  COLOR_NAMES,
+  COLORS_COUNT,
+  DIAMETER,
+  SPACING_BETWEEN_SLICES_PX,
+} from "./settings";
 import {
   areEntriesSimilar,
   getColorId,
@@ -18,10 +23,9 @@ import {
 
 interface Props {
   entries: string[];
-  strokeWidth?: number;
 }
 
-export default function Roulette({ entries, strokeWidth = 1 }: Props) {
+export default function Roulette({ entries }: Props) {
   const [currentEntries, setCurrentEntries] = useState(entries);
   const [winnerAngle, setWinnerAngle] = useState<number>(0);
   const [winnerIndex, setWinnerIndex] = useState<number>();
@@ -123,7 +127,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
             <Colors />
 
             {displayedEntries.map((entry, index) => {
-              const radius = svgSize / 2 + strokeWidth / 2;
+              const radius = svgSize / 2 + SPACING_BETWEEN_SLICES_PX / 2;
               const color = COLOR_NAMES[index % COLORS_COUNT];
 
               return (
@@ -135,8 +139,8 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
                   )}
                   points={getSlicePath(radius, sliceAngle)}
                   style={{
-                    strokeWidth,
                     transform: `rotate(${index * sliceAngle}deg`,
+                    strokeWidth: SPACING_BETWEEN_SLICES_PX,
                     fill: `url('#${getColorId(color)}')`,
                   }}
                 />

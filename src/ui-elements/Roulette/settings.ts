@@ -1,4 +1,5 @@
 export const DIAMETER = 600;
+export const SPACING_BETWEEN_SLICES_PX = 1;
 
 export const COLORS: { [name: string]: { start: string; end: string } } = {
   purple: {
