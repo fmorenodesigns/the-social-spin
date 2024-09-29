@@ -135,8 +135,8 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
                   )}
                   points={getSlicePath(radius, sliceAngle)}
                   style={{
-                    transform: `rotate(${index / (1 / sliceAngle)}deg`,
                     strokeWidth,
+                    transform: `rotate(${index * sliceAngle}deg`,
                     fill: `url('#${getColorId(color)}')`,
                   }}
                 />
@@ -147,7 +147,7 @@ export default function Roulette({ entries, strokeWidth = 1 }: Props) {
 
         <div className="roulette-entry-names">
           {displayedEntries.map((entry, index) => {
-            const rotate = index / (1 / sliceAngle) + sliceAngle / 2;
+            const rotate = index * sliceAngle + sliceAngle / 2;
 
             return (
               <div
