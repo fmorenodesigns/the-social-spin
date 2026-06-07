@@ -27,20 +27,17 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: VENDORS,
-          ...renderChunks(dependencies),
+        manualChunks: (id) => {
+          for (const vendor of VENDORS) {
+            if (id.includes(`/node_modules/${vendor}/`)) return "vendor";
+          }
+          for (const dep of Object.keys(dependencies)) {
+            if (VENDORS.includes(dep)) continue;
+            if (id.includes(`/node_modules/${dep}/`)) return dep;
+          }
         },
       },
     },
   },
 });
 
-function renderChunks(deps: Record<string, string>) {
-  const chunks = {};
-  Object.keys(deps).forEach((key) => {
-    if (VENDORS.includes(key)) return;
-    chunks[key] = [key];
-  });
-  return chunks;
-}

@@ -33,7 +33,7 @@ export default function Roulette({ entries }: Props) {
   const [spinningDuration, setSpinningDuration] = useState<number>(
     getSpiningDuration()
   );
-  const spinTimeoutId = useRef<number>();
+  const spinTimeoutId = useRef<number>(undefined);
   const clearSpinTimeout = () => window.clearTimeout(spinTimeoutId.current);
 
   if (!areEntriesSimilar(currentEntries, entries)) {
