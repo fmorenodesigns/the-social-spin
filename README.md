@@ -3,5 +3,5 @@ The Social Spin is a simple, fun web app that helps with decision-making. It use
 
 ## Installation
 0. Clone the repo and navigate to the directory
-1. Run `npm install`
-2. Run `npm start`
+1. Run `pnpm install`
+2. Run `pnpm start`
