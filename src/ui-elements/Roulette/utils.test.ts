@@ -6,13 +6,16 @@ test("Test `pickRandomIntegerBetween`", () => {
   const ITERATIONS = 10000000;
   const entries = ["Dog", "Duck", "Cat", "Bird", "Lion"];
 
-  const results = entries.reduce((current, _, index) => {
-    current[index] = {
-      count: 0,
-      percentage: 0,
-    };
-    return current;
-  }, {} as { [index: number]: { count: number; percentage: number } });
+  const results = entries.reduce(
+    (current, _, index) => {
+      current[index] = {
+        count: 0,
+        percentage: 0,
+      };
+      return current;
+    },
+    {} as { [index: number]: { count: number; percentage: number } },
+  );
 
   for (let i = 0; i < ITERATIONS; i++) {
     const entryIndex = pickRandomIntegerBetween(0, entries.length - 1);

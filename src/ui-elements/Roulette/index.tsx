@@ -30,9 +30,8 @@ export default function Roulette({ entries }: Props) {
   const [winnerAngle, setWinnerAngle] = useState<number>(0);
   const [winnerIndex, setWinnerIndex] = useState<number>();
   const [spinning, setSpinning] = useState<boolean>(false);
-  const [spinningDuration, setSpinningDuration] = useState<number>(
-    getSpiningDuration()
-  );
+  const [spinningDuration, setSpinningDuration] =
+    useState<number>(getSpiningDuration());
   const spinTimeoutId = useRef<number>(undefined);
   const clearSpinTimeout = () => window.clearTimeout(spinTimeoutId.current);
 
@@ -80,7 +79,7 @@ export default function Roulette({ entries }: Props) {
     const offsetPadding = sliceAngle * 0.05; // Padding to ensure that the pointer doesn't land on the very edge of the slice
     const inWinnerSliceOffset = pickRandomIntegerBetween(
       offsetPadding,
-      sliceAngle - offsetPadding
+      sliceAngle - offsetPadding,
     );
     // The angle at which the winner's slice starts
     const winnerSliceStart = winnerIdx * sliceAngle;
@@ -135,7 +134,7 @@ export default function Roulette({ entries }: Props) {
                   key={`slice-${index}-${entry}`}
                   className={cx(
                     "roulette-slices-slice",
-                    isLoser(index, winnerIndex) && "roulette--loser-slice"
+                    isLoser(index, winnerIndex) && "roulette--loser-slice",
                   )}
                   points={getSlicePath(radius, sliceAngle)}
                   style={{
@@ -158,7 +157,7 @@ export default function Roulette({ entries }: Props) {
                 key={`slice-name-${index}-${entry}`}
                 className={cx(
                   "roulette-entry-names-name",
-                  isLoser(index, winnerIndex) && "roulette--loser-slice"
+                  isLoser(index, winnerIndex) && "roulette--loser-slice",
                 )}
                 style={{
                   transform: `rotate(${rotate}deg`,

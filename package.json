@@ -11,7 +11,9 @@
     "build:error-page": "node build-error-page.mjs",
     "build:custom-domain": "echo thesocialspin.fmoreno.me > ./dist/CNAME",
     "deploy": "pnpm run build && pnpm run build:custom-domain && pnpm run build:error-page && gh-pages -d dist",
-    "test": "vitest"
+    "test": "vitest",
+    "format": "oxfmt src vite.config.mts oxfmt.config.ts",
+    "format:check": "oxfmt --check src vite.config.mts oxfmt.config.ts"
   },
   "browserslist": {
     "production": [
@@ -51,7 +53,8 @@
     "vite-plugin-checker": "^0.14.5",
     "vite-plugin-svgr": "^5.2.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.0.5"
+    "vitest": "^5.0.5",
+    "oxfmt": "^0.74.0"
   },
   "homepage": ".",
   "type": "module"

@@ -12,7 +12,7 @@ export function getSpiningDuration() {
 
 export function areEntriesSimilar<T extends string[]>(
   entriesA: T,
-  entriesB: T
+  entriesB: T,
 ): boolean {
   return (
     entriesA.every((entry) => entriesB.includes(entry)) &&
