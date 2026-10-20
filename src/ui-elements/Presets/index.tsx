@@ -1,5 +1,6 @@
-import React from "react";
 import "./styles.scss";
+
+import React from "react";
 
 interface Props {
   setEntries: React.Dispatch<React.SetStateAction<string>>;

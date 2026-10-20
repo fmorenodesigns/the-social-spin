@@ -1,7 +1,8 @@
+import "./styles.scss";
+
 import React from "react";
 
 import Tooltip from "../Tooltip";
-import "./styles.scss";
 
 export default function Instructions() {
   return (

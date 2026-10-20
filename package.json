@@ -6,8 +6,8 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src/**/*.ts{,x}",
-    "lint:fix": "eslint src/**/*.ts{,x} --fix",
+    "lint": "oxlint src",
+    "lint:fix": "oxlint src --fix",
     "build:error-page": "node build-error-page.mjs",
     "build:custom-domain": "echo thesocialspin.fmoreno.me > ./dist/CNAME",
     "deploy": "pnpm run build && pnpm run build:custom-domain && pnpm run build:error-page && gh-pages -d dist",
@@ -34,27 +34,20 @@
     "react-popper-tooltip": "^4.4.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.5",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.72.0",
-    "@typescript-eslint/parser": "^8.72.0",
     "@vitejs/plugin-react": "^6.1.2",
-    "eslint": "^9.39.5",
-    "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
     "gh-pages": "^6.3.0",
-    "globals": "^17.13.0",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "sass-embedded": "^1.105.2",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "^8.3.4",
     "vite-plugin-checker": "^0.14.5",
     "vite-plugin-svgr": "^5.2.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.0.5",
-    "oxfmt": "^0.74.0"
+    "vitest": "^5.0.5"
   },
   "homepage": ".",
   "type": "module"
